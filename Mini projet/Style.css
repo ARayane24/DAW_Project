@@ -1,0 +1,98 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    width: 100%;
+    background-color:  #adddff;
+}
+
+#Bodyleft{
+    width: 80%;
+    background-color: aliceblue;
+  /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 3%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* On mouse-over, add a deeper shadow */
+#Bodyleft:hover {
+    box-shadow: 0 18px 66px 0 rgba(0,0,0,0.2);
+  }
+
+header { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    width: 100%;
+    background-color: rgb(255, 0, 0);
+}
+
+nav { 
+    margin-top: 10px;
+    padding: 10px;
+    width: 15%;
+    background-color: aliceblue;
+  /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 3%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+
+
+#Etudiant{
+    height: 300px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+}
+
+h3{
+    margin: 20px auto;
+}
+
+li { 
+    list-style: none;
+    margin: 10px 0;
+}
+
+.ligne{ 
+    width: 80%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgb(0, 204, 255);
+}
+
+.contain{
+    margin: 20px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#Recherche{
+    display: grid;
+    width: 60%;
+    grid-template-rows: repeat(2,50%);
+    grid-template-columns: repeat(2,50%);
+}
