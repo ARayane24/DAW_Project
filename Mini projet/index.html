@@ -66,17 +66,14 @@
                     <label for="Site">Site </label>  <input type="text" placeholder="Casbah">    
                 </div>
             </div>
-            <button>Valider</button>
+            <button id="search" onclick="showResultSection()">Valider</button>
             </br>
             
         </section>
-<!--
-        <section>
-            <div class="ligne"></div>
-        </section>
 
-        <section>
-        </br>
+        <section id="search-Result-Section" style="display: none;">
+            <div class="ligne"></div>
+            </br>
             <div id="result">
                 <h3>Résultat de la recherche</h3>
                 <a href="">Resultat de recherche</a>
@@ -85,15 +82,21 @@
             
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur delectus in aliquid laudantium totam iusto ducimus eos ullam maiores eius. A officia mollitia iste eum unde placeat asperiores laboriosam quia, hic nisi enim facilis repudiandae laudantium esse consectetur, sit est maxime necessitatibus quidem! Accusamus ducimus, modi minima nostrum iusto ab repellat voluptate aperiam ea labore velit non enim iure corporis. Magni id, nisi ipsa dolorum temporibus distinctio molestiae eum recusandae laudantium eius deserunt amet eligendi, dolor assumenda dolorem tempora? Nulla culpa nobis, magnam sequi quod, delectus magni rem a qui ex aliquid, ipsa repellat molestiae optio repellendus eveniet provident ducimus?
         </section> 
-    -->
+    
     </div>
     
     
     </br>
 
-    <script>
+    <script type="text/javascript">
         // add random placeholder --> for the search inputs
         // add using dom the ability to hide results section from the main until the users click the search button 
+        function showResultSection(){
+            document.querySelector('#search-Result-Section').style.display = '';
+        }
+
+        
+
     </script>
 </body>
 </html>

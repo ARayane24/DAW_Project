@@ -79,6 +79,7 @@ nav>.ligne{
     padding: 0;
     margin: auto;
     margin-top: 1%;
+    margin-right: 1%;
     margin-bottom: 2.5%;
     
     width: 79%;
@@ -208,4 +209,8 @@ section{
     width: 60%;
     grid-template-rows: repeat(2,50%);
     grid-template-columns: repeat(2,50%);
+}
+
+@media screen and (max-width: 480px) {
+    
 }
