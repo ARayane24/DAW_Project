@@ -52,9 +52,9 @@
         
         <section>
             <h3>Recherche</h3>
-            <div id="Recherche">
+            <form id="Recherche" method="post" action="postGet.php">
                 <div class="contain">
-                    <label for="Continent">Continent </label> <input type="text" >
+                    <label id="Continent">Continent </label> <input type="text" >
                 </div>
                 <div class="contain">
                     <label for="Ville">Ville </label>  <input type="text" >
@@ -63,10 +63,11 @@
                     <label for="Pays">Pays </label>  <input type="text" >
                 </div>
                 <div class="contain">
-                    <label for="Site">Site </label>  <input type="text" placeholder="Casbah">    
+                    <label for="Site">Site </label>  <input type="text" placeholder="Casbas">    
                 </div>
-            </div>
-            <button id="search" onclick="showResultSection()">Valider</button>
+            </form>
+
+            <button id="search" onclick="validerAnnuleButton()">Valider</button>
             </br>
             
         </section>
@@ -91,8 +92,46 @@
     <script type="text/javascript">
         // add random placeholder --> for the search inputs
         // add using dom the ability to hide results section from the main until the users click the search button 
+        
+        function validerAnnuleButton(){
+            if (document.querySelector('#search').textContent === 'Valider') {
+                showResultSection();
+            }else{
+                annuleSearch();
+            }
+        }
+
+        
+        
         function showResultSection(){
-            document.querySelector('#search-Result-Section').style.display = '';
+
+            let input1 = readData(0) === "";
+            let input2 = readData(1) === "";
+            let input3 = readData(2) === "";
+            let input4 = readData(3) === "";
+
+            if (input1 && input2 && input3 && input4) {
+                alert('nothing to search for !! ');
+            }else{
+                document.querySelector('#search-Result-Section').style.display = '';
+                document.querySelector('#search').textContent = "Annule";
+
+            }
+            
+            
+        }
+
+        
+        function readData(i) {
+            var input = document.getElementsByTagName("input")[i].value;
+            return input;
+        }
+
+        function annuleSearch(){
+            document.getElementById('Recherche').reset();
+
+            document.querySelector('#search').textContent = "Valider";
+            document.querySelector('#search-Result-Section').style.display = 'none';
         }
 
         
