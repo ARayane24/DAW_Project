@@ -37,7 +37,7 @@
         <div class="ligne"></div> </br>
 
         <div id="AjouterVille">
-            <a href="./index.html">Back to home</a>
+            <a href="./index.html">page d’accueil</a>
         </div>
     </nav>
     
@@ -50,9 +50,66 @@
 
         <section>
             <h3>Ajouter une Ville</h3>
-            
+            <form id="Recherche-info" method="POST" action="postGet.php">
+                <div id="main-info">
+                    <div class="contain">
+                        <label for="Continent">Continent </label> <input type="text" id="Continent" name="Continent" size="10" list="continent" required>
+                        <datalist id="continent">
+                            <option value="Afrique">  
+                            <option value="Amérique">
+                            <option value="Antarctique">
+                            <option value="Asie">
+                            <option value="Europe">
+                            <option value="Océanie">
+                        </datalist>
+                    </div>
+                    <div class="contain">
+                        <label for="Ville">Ville </label>  <input type="text" id="Ville" name="Ville" size="10" required>
+                    </div>
+                    <div class="contain">
+                        <label for="Pays">Pays </label>  <input type="text" id="Pays" name="Pays" size="10" required>
+                    </div>
+                    <div class="contain">
+                        <label for="Site">Site </label>  <input type="text" id="Site" name="Site" size="10" placeholder="Casbas" required>    
+                    </div>
+                </div>
+
+                <div id="details">
+                    <div class="contain">
+                        <label for="Descriptif">Descriptif </label> <br>
+                        <textarea id="Descriptif" name="Descriptif" placeholder="description" size="255" required></textarea>        
+                    </div>
+                    <div class="contain">
+                        <label for="Photos">Photos </label> <br>
+                        <input type="url" id="Photos" name="Photos" multiple="multiple" placeholder="C:\Users\admin\Desktop" required>        
+                    </div>
+                </div>
+
+                <div class="ligne"></div> <br>
+
+                <h4>plus de details</h4>
+
                 
-            </br></br></br>
+
+                <div id="tourist-areas">
+                    <div class="contain">
+                        <label for="Hôtels">Hôtels </label> <input type="text" id="Hôtels" name="Hôtels" size="20">
+                    </div>
+                    <div class="contain">
+                        <label for="Restaurants">Restaurants </label>  <input type="text" id="Restaurants" name="Restaurants" size="20">
+                    </div>
+                    <div class="contain">
+                        <label for="Gares">Gares </label>  <input type="text" id="Gares" name="Gares" size="20">
+                    </div>
+                    <div class="contain">
+                        <label for="Aéroports">Aéroports </label>  <input type="text" id="Aéroports" name="Aéroports" size="20">    
+                    </div>
+                </div>
+                
+                <button id="add" onclick="" name="add">Ajouter</button>
+            </form>  
+            
+            </br>
             
         </section>
 

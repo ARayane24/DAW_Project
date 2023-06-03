@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="">
     <meta name="description" content="this page is the home page of "/>
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
     <link rel="stylesheet" href="Style.css">
 
@@ -52,29 +50,40 @@
         
         <section>
             <h3>Recherche</h3>
-            <form id="Recherche" method="post" action="postGet.php">
+            <form id="Recherche" method="POST" action="postGet.php">
                 <div class="contain">
-                    <label id="Continent">Continent </label> <input type="text" >
+                    <label for="Continent">Continent </label> <input type="text" id="Continent" name="Continent" size="10" list="continent" required>
+                        <datalist id="continent">
+                            <option value="Afrique">  
+                            <option value="Amérique">
+                            <option value="Antarctique">
+                            <option value="Asie">
+                            <option value="Europe">
+                            <option value="Océanie">
+                        </datalist>
                 </div>
                 <div class="contain">
-                    <label for="Ville">Ville </label>  <input type="text" >
+                    <label for="Ville">Ville </label>  <input type="text" id="Ville" name="Ville">
                 </div>
                 <div class="contain">
-                    <label for="Pays">Pays </label>  <input type="text" >
+                    <label for="Pays">Pays </label>  <input type="text" id="Pays" name="Pays">
                 </div>
                 <div class="contain">
-                    <label for="Site">Site </label>  <input type="text" placeholder="Casbas">    
+                    <label for="Site">Site </label>  <input type="text" id="Site" name="Site" placeholder="Casbas">    
                 </div>
-            </form>
 
-            <button id="search" onclick="validerAnnuleButton()">Valider</button>
-            </br>
-            
+                
+            </form>  
+            <button id="search" onclick="validerAnnuleButton()" name="search">Valider</button>
+            </br>         
         </section>
 
         <section id="search-Result-Section" style="display: none;">
             <div class="ligne"></div>
             </br>
+
+            
+
             <div id="result">
                 <h3>Résultat de la recherche</h3>
                 <a href="">Resultat de recherche</a>
@@ -113,17 +122,18 @@
             if (input1 && input2 && input3 && input4) {
                 alert('nothing to search for !! ');
             }else{
-                document.querySelector('#search-Result-Section').style.display = '';
-                document.querySelector('#search').textContent = "Annule";
-
+              
+                    document.querySelector('#search-Result-Section').style.display = '';
+                    document.querySelector('#search').textContent = "Annule";
             }
+            
             
             
         }
 
         
         function readData(i) {
-            var input = document.getElementsByTagName("input")[i].value;
+            let input = document.getElementsByTagName("input")[i].value;
             return input;
         }
 
@@ -133,7 +143,6 @@
             document.querySelector('#search').textContent = "Valider";
             document.querySelector('#search-Result-Section').style.display = 'none';
         }
-
         
 
     </script>
