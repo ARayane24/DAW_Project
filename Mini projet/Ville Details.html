@@ -14,6 +14,18 @@
     <link rel="icon" href="./src imgs/png-transparent-hotel-ligarb-tourism-travel-agency-hotel.svg" >
     <!--my web site title-->
     <title>Ajouter Ville</title>
+
+    <style>
+        .slideshow img {
+          display: none;
+          width: 250px;
+          height: 150px;       
+          overflow: hidden;
+        }
+        .slideshow .active {
+          display: block;
+        }
+      </style>
 </head>
 <body>
     <nav>
@@ -51,14 +63,107 @@
         </header>
 
         <section>
-            
+
+        </section>
+
+        <section>
+
+          <table id="THôtels">
+            <th>
+              <td>Hôtels</td>
+            </th>
+          </table>
+
+          <table id="TRestaurants">
+            <th>
+              <td>Restaurants</td>
+            </th>
+          </table>
+          
+          <table id="THôtels">
+            <th>
+              <td>Hôtels</td>
+            </th>
+          </table>
+
+          <table id="TRestaurants">
+            <th>
+              <td>Restaurants</td>
+            </th>
+          </table>
+
+        </section>
+
+        <section>
+              <div class="slideshow">
+                <img src="background2.jpg" class="active">
+                <img src="HTML5.png">
+                <img src="java.png">
+                <img src="logo_umbb.png">
+              </div>
+              <button id="prev">Précédent</button>
+              <button id="next">Suivant</button>
+              <button id="pause">Pause</button>
+              <button id="start">Démarrer</button>
+        
         </section>
 
     </div>
 
     
-    <script>
 
-    </script>
+    
+
+
+    <script>
+        var slideshow = document.querySelector('.slideshow');
+        var images = slideshow.querySelectorAll('img');
+        var prevButton = document.getElementById('prev');
+        var nextButton = document.getElementById('next');
+        var pauseButton = document.getElementById('pause');
+        var startButton = document.getElementById('start');
+        var currentIndex = 0;
+        ////////////////////////////////////////////////////////
+        var pause = false;
+        var delia = 2000; // mili sec
+  
+        images[currentIndex].classList.add('active');
+  
+        function nextImage() {
+          images[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % images.length;
+          images[currentIndex].classList.add('active');
+        }
+  
+        function prevImage() {
+          images[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          images[currentIndex].classList.add('active');
+        }
+  ///////////////////////////////////////////////////////////////////
+        function startSlideshow() {
+            while (!pause) {
+              nextImage();
+            }
+          , delia);
+          
+          
+        }
+  
+        function stopSlideshow() {
+          clearInterval(intervalId);
+        }
+  
+        nextButton.addEventListener('click', nextImage);
+        prevButton.addEventListener('click', prevImage);
+        pauseButton.addEventListener('click', function() {
+          pause = true;
+        });
+        startButton.addEventListener('click', function() {
+          pause = false;
+        });
+  
+        startSlideshow();
+      </script>
 </body>
 </html>

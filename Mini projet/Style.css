@@ -147,7 +147,6 @@ li {
 
 .contain{
     margin: 20px;
-    margin-left: 1%;
 
     display: flex;
     justify-content: space-around;
@@ -170,12 +169,6 @@ li {
 
 }
 
-#Descriptif{
-    margin: 12px;
-    padding: 7px 13px;
-    width: 80%;
-}
-
 .contain input:hover{
     padding: 8px 13px;
     width: 50%;
@@ -188,6 +181,12 @@ li {
     width: 50%;
 
     border-radius: 4px;
+}
+
+#Descriptif{
+    margin: 12px;
+    padding: 7px 13px;
+    width: 80%;
 }
 
 
@@ -218,13 +217,19 @@ section{
     flex-direction: column;
 }
 
-#Recherche , #main-info ,#tourist-areas{
+#Recherche , #main-info {
     display: grid;
     width: 60%;
     grid-template-rows: repeat(2,50%);
     grid-template-columns: repeat(2,50%);
 }
 
+#tourist-areas{
+    display: grid;
+    width: 100%;
+    grid-template-rows: repeat(2,50%);
+    grid-template-columns: repeat(2,50%);
+}
 
 
 
@@ -242,6 +247,20 @@ textarea{
     border-radius: 10px;
     border-bottom: 2px solid #adddff;
 
+}
+
+select{
+    padding: 10px;
+    margin: 10px;
+    width: 40%;
+
+    text-align: center;
+    overflow: hidden;
+
+    
+    border-color: #393d40 ;
+    border-radius: 5px;
+    background-color: #e8f8ff;
 }
 
 #details{
