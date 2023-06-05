@@ -82,7 +82,7 @@
                     <div class="contain">
                         <label for="Photos">Photos </label> <br>
                         <input type="url" id="Photos" name="Photos" multiple="multiple" placeholder="C:\Users\admin\Desktop" required>
-                        <button id="add" onclick="" name="add">Ajouter</button>
+                        <button id="addPhotos" onclick="addPhoto()" name="addPhotos">Ajouter</button>
                         <select name="Photos" size="5" multiple>  
                             <option value="Photo1">  C:\Users\admin\Desktop\Photo1 </option>  
                             <option value="Photo2">  C:\Users\admin\Desktop\Photo2 </option>  
@@ -147,6 +147,47 @@
 
     
     <script>
+        function addPhoto(){
+            if ( ! readData(Photos)) {
+                alert ('there is nothing to add');
+                return;
+            }
+                
+            // create a new div element
+            const newDiv = document.createElement("option");
+
+            // and give it some content
+            const newContent = readData(Photos);
+
+            // add the text node to the newly created div
+            newDiv.appendChild(newContent);
+
+            // add the newly created element and its content into the DOM
+            const currentDiv = document.getElementsByTagName("select");
+            document.body.insertBefore(newDiv, currentDiv); 
+            
+        }
+
+        function addHotels(){
+            
+        }
+
+        function addRestaurants(){
+            
+        }
+
+        function addGares(){
+            
+        }
+
+        function addAéroports(){
+            
+        }
+
+        function readData(id) {
+            let input = document.getElementById(id).value;
+            return input;
+        }
 
     </script>
 </body>
