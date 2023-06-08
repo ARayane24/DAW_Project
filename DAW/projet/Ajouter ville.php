@@ -1,4 +1,5 @@
-<?php include "API.php";?>
+<?php include "API.php";
+OpenSession();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,7 @@
 </head>
 <body>
     <nav>
-        
+
         <div id="Etudiant">
             <h3>Realisé par :</h3>
              <?php Binom();?>
@@ -40,27 +41,28 @@
 
         <section>    
             <h3>Ajouter une Ville</h3>
-            <form id="Recherche-info" method="POST" action="postGet.php">
+            <form id="Recherche-info" method="POST" enctype = "multipart/form-data">
                 <div id="main-info">
                     <div class="contain">
-                        <label for="Continent">Continent </label> 
+                        <label for="Continent">Continent</label> 
                         <input type="text" id="Continent" name="Continent" size="10" list="continent" required>
                         <datalist id='continent'>
-                            <?php listeselect('Contient','Nomcon')?>
+                            <?php listeselect($_SESSION['contient'],'Nomcon');?>
                         </dataliste>
                     </div>
                     <div class="contain">
                         <label for="Ville">Ville </label>  <input type="text" id="Ville" name="Ville" size="10" list="ville"  required>
-                        <datalist id='ville' >
-                            <?php listeselect('ville','Nomvil'); ?>
-                        </datalist>
                     </div>
                     <div class="contain">
-                        <label for="Pays">Pays </label>  <input type="text" id="Pays" name="Pays" list="pays" size="10" required>
+                        <label for="Pays">Pays</label>  <input type="text" id="Pays" name="Pays" list="pays" size="10" required>
+                         <button onclick="addpays()" >Ajouter</button>
                             <datalist id = "pays">
-                                <?php listeselect('pays','Nompay'); ?>
+                                <?php listeselect($_SESSION['pays'],'Nompay'); ?>
                             </datalist>
+                            
+                            
                     </div>
+                   
                     <div class="contain">
                         <label for="Site">Site </label>  <input type="text" id="Site" name="Site" size="10" placeholder="Casbas" required>    
                     </div>
@@ -73,10 +75,10 @@
                     </div>
                     <div class="contain">
                         <label for="Photos">Photos </label> <br>
-                        <input type="url" id="Photos" name="Photos" multiple="multiple" placeholder="photo1.png" required>
+                        <input type="file" id="Photos" name="Photos" multiple="multiple" placeholder="photo1.png" required>
                         <button id="add" onclick="" name="add">Ajouter</button>
                         <select name="Photos" size="5" multiple>  
-                              
+
                         </select>        
                     </div>
                 </div>
@@ -114,7 +116,7 @@
                     <div class="contain">
                         <label for="Aéroports">Aéroports </label>  <input type="text" id="Aéroports" name="Aéroports" size="20">
                         <button id="add" onclick="" name="add">Ajouter</button>
-                        <select name="Aéroports" size="5" multiple>  
+                        <select name="Aeroports" size="5" multiple>  
                             <option value="Aéroport1"> Aéroport1 </option>  
                             <option value="Aéroport2"> Aéroport2 </option>  
                             <option value="Aéroport3"> Aéroport3 </option>   
@@ -122,7 +124,7 @@
                     </div>
                 </div>
                 
-                <button id="add" onclick="" name="add">Ajouter</button>
+                <button id="add" onclick="addvile()" name="add">Submit</button>
             </form>  
             
             </br>
@@ -130,5 +132,12 @@
         </section>
 
     </div>
+
+    <script >
+        addvile(){ 
+            <?php insertVille(); ?>
+        }
+        
+    </script>
 </body>
 </html>

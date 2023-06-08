@@ -1,4 +1,7 @@
-<?php include "API.php"; ?>
+<?php 
+include "API.php"; 
+OpenSession();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,70 +41,60 @@
         
         <section>
             <h3>Recherche</h3>
-            <form id="Recherche" method="POST">
+            <form id="Recherche" method="POST" action="index.php">
                 <div class="contain">
                     <label for="Continent">Continent </label> 
                     <input type="text" id="Continent" name="Continent" size="10" list="continent" required>
                          <datalist id="continent">
-                             <?php listeselect('Contient','Nomcon')?>
+                             <?php 
+                                 listeselect($_SESSION['contient'],'Nomcon');                             
+                             ?>
                         </datalist>
                 </div>
 
                 <div class="contain">
-                    <label for="Ville">Ville </label>  <input list="ville" type="text" id="Ville" name="Ville"  >
+                    <label for="Ville">Ville </label>  <input list="ville" type="text" id="Ville" name="Ville" >
                         <datalist id="ville" >
-                                <?php listeselect('ville','Nomvil');?>
+                                <?php listeselect($_SESSION['ville'],'Nomvil');?>
                         </datalist>
                 </div>
 
                 <div class="contain">
                     <label for="Pays">Pays </label>  <input type="text" id="Pays" name="Pays"  list="pays" >
                     <datalist id="pays" >
-                            <?php listeselect('pays','Nompay'); ?>
-                        </datalist>
+                       <?php listeselect($_SESSION['pays'],'Nompay');
+                        ?>
+                    </datalist>
                 </div>
 
                 <div class="contain">
                     <label for="Site">Site </label>  <input type="text" id="Site" name="Site" placeholder="Casbas">    
                 </div>
-
- 
-            </form>  
-            <button id="search" onclick="chercher()" name="search">Valider</button>
-            </br>         
+                            
+            
+            <button id="search" name="search">Valider</button>      
+             </form>   
         </section>
 
         <section id="search-Result-Section">
             <div class="ligne"></div>
-            </br>
-
-            
 
             <div id="result">
                 <h3>Résultat de la recherche</h3>
                 <a href="">Resultat de recherche</a>
-                
-            <script>
-                function chercher(){
-                    var tab = <?php echo $JsonFile; ?> ;
-                    console.log(tab);
-                }
-                
-            </script>
-            <?php Recherche(); ?>
-            
-            
+            <?php 
+                rechercher();?>
           </div>
 
-          <div id="rech">
-                <p>Hello</p>
-            </div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur delectus in aliquid laudantium totam iusto ducimus eos ullam maiores eius. A officia mollitia iste eum unde placeat asperiores laboriosam quia, hic nisi enim facilis repudiandae laudantium esse consectetur, sit est maxime necessitatibus quidem! Accusamus ducimus, modi minima nostrum iusto ab repellat voluptate aperiam ea labore velit non enim iure corporis. Magni id, nisi ipsa dolorum temporibus distinctio molestiae eum recusandae laudantium eius deserunt amet eligendi, dolor assumenda dolorem tempora? Nulla culpa nobis, magnam sequi quod, delectus magni rem a qui ex aliquid, ipsa repellat molestiae optio repellendus eveniet provident ducimus?
         </section> 
     
     </div>
-    
-    
-    </br>
+    <script>
+        function f(name) {
+            <?php $_SESSION['nameCode'] = name; ?>
+            window.location.href="Ville Details.php";
+        }
+
+    </script>
 </body>
 </html>

@@ -7,10 +7,6 @@
 }
 
 
-
-
-
-
         /*    the body    */
 body{ 
     width: 100%;
@@ -24,24 +20,18 @@ body{
 .ligne{ 
     width: 80%;
     height: 4px;
-
     border-radius: 5px;
 
     text-align: center;
     
     background-color: #adddff;
 }
-#rech{ 
+.rech{
     margin: 0 10px;
-    border-style: 1px solid;
+    border-style: 2px solid;
     border-radius: 3px;
-    background-color: antiquewhite;
-    border-color: aqua;
+    background-color: rgb(3, 28, 252);
 }
-
-
-
-
 
         /*    nav bar     */
 
@@ -72,11 +62,6 @@ nav>.ligne{
 .email , #AjouterVille{
     text-align: center;
 }
-
-
-
-
-
 
 
         /*    the left side   */
@@ -224,7 +209,7 @@ section{
 #Recherche , #main-info {
     display: grid;
     width: 60%;
-    grid-template-rows: repeat(2,50%);
+    grid-template-rows: repeat(3,33%);
     grid-template-columns: repeat(2,50%);
 }
 
