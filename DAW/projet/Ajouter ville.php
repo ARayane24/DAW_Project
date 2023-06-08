@@ -41,7 +41,7 @@ OpenSession();?>
 
         <section>    
             <h3>Ajouter une Ville</h3>
-            <form id="Recherche-info" method="POST" enctype = "multipart/form-data">
+            <form id="Recherche-info" method="POST" enctype = "multipart/form-data" action="API.php">
                 <div id="main-info">
                     <div class="contain">
                         <label for="Continent">Continent</label> 
@@ -51,18 +51,18 @@ OpenSession();?>
                         </dataliste>
                     </div>
                     <div class="contain">
-                        <label for="Ville">Ville </label>  <input type="text" id="Ville" name="Ville" size="10" list="ville"  required>
+                        <label for="Ville">Ville</label>  <input type="text" id="Ville" name="Ville2" size="10" list="ville"  required>
                     </div>
+                                       
                     <div class="contain">
                         <label for="Pays">Pays</label>  <input type="text" id="Pays" name="Pays" list="pays" size="10" required>
-                         <button onclick="addpays()" >Ajouter</button>
                             <datalist id = "pays">
                                 <?php listeselect($_SESSION['pays'],'Nompay'); ?>
                             </datalist>
-                            
-                            
+
+                            <button onclick="openDialog('DialogAddPays')">Ajouter pays</button>    
                     </div>
-                   
+
                     <div class="contain">
                         <label for="Site">Site </label>  <input type="text" id="Site" name="Site" size="10" placeholder="Casbas" required>    
                     </div>
@@ -70,7 +70,7 @@ OpenSession();?>
 
                 <div id="details">
                     <div class="contain">
-                        <label for="Descriptif">Descriptif </label> <br>
+                        <label for="Descriptif">Descriptif</label> <br>
                         <textarea id="Descriptif" name="Descriptif" placeholder="description" size="255" required></textarea>        
                     </div>
                     <div class="contain">
@@ -89,7 +89,7 @@ OpenSession();?>
                     <div class="contain">
                         <label for="Hôtels">Hôtels </label> <input type="text" id="Hôtels" name="Hôtels" size="20">
                         <button id="add" onclick="" name="add">Ajouter</button>
-                        <select name="Hôtels" size="5" multiple>  
+                        <select name="hotels" size="5" multiple>  
                             <option value="Hôtel1"> Hôtel1 </option>  
                             <option value="Hôtel2"> Hôtel2 </option>  
                             <option value="Hôtel3"> Hôtel3 </option>   
@@ -98,7 +98,7 @@ OpenSession();?>
                     <div class="contain">
                         <label for="Restaurants">Restaurants </label>  <input type="text" id="Restaurants" name="Restaurants" size="20">
                         <button id="add" onclick="" name="add">Ajouter</button>
-                        <select name="Restaurants" size="5" multiple>  
+                        <select name="Restaurantss" size="5" multiple>  
                             <option value="Restaurant1"> Restaurant1 </option>  
                             <option value="Restaurant2"> Restaurant2 </option>  
                             <option value="Restaurant3"> Restaurant3 </option>   
@@ -107,7 +107,7 @@ OpenSession();?>
                     <div class="contain">
                         <label for="Gares">Gares </label>  <input type="text" id="Gares" name="Gares" size="20">
                         <button id="add" onclick="" name="add">Ajouter</button>
-                        <select name="Gares" size="5" multiple>  
+                        <select name="Garess" size="5" multiple>  
                             <option value="Gare1"> Gare1 </option>  
                             <option value="Gare2"> Gare2 </option>  
                             <option value="Gare3"> Gare3 </option>   
@@ -124,20 +124,42 @@ OpenSession();?>
                     </div>
                 </div>
                 
-                <button id="add" onclick="addvile()" name="add">Submit</button>
-            </form>  
+                <button id="add" onclick="submit" name="add">Submit</button>
+           
+    </form>  
             
             </br>
             
         </section>
 
-    </div>
-
-    <script >
-        addvile(){ 
-            <?php insertVille(); ?>
-        }
-        
-    </script>
+    </div>              
+                            <dialog id="DialogAddPays" >
+                                <form method="POST" action="API.php">
+                                    <h2>Ajouter Pays</h2>
+                                        <div>
+                                            <input type="text" name="ContinentPays" size="5" list="continent" required>
+                                            <datalist id='continent'>
+                                                <?php listeselect($_SESSION['contient'],'Nomcon');?>
+                                            </dataliste>
+                                        </div>
+                                        
+                                            <div>
+                                                <input type="text"  name="addPays">
+                                            </div>
+                                        
+                                        <button onclick="closeDialogADD('DialogAddPays');">ADD</button>
+                                        <button onclick="closeDialog('DialogAddPays');">Cancel</button>
+                                                <script>
+                                                    function closeDialogADD(namedig){
+                                                        var dialog = document.getElementById(namedig);
+                                                        dialog.close();
+                                                    }
+                                                </script>
+                               
+                                    </form>
+                             </dialog> 
+                         
+    
+    <script src="Script.js"></script>  
 </body>
 </html>

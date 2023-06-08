@@ -41,10 +41,10 @@ OpenSession();
         
         <section>
             <h3>Recherche</h3>
-            <form id="Recherche" method="POST" action="index.php">
+            <form id="Recherche" method="POST" >
                 <div class="contain">
                     <label for="Continent">Continent </label> 
-                    <input type="text" id="Continent" name="Continent" size="10" list="continent" required>
+                    <input type="text" id="Continent" name="RContinent" size="10" list="continent">
                          <datalist id="continent">
                              <?php 
                                  listeselect($_SESSION['contient'],'Nomcon');                             
@@ -53,14 +53,14 @@ OpenSession();
                 </div>
 
                 <div class="contain">
-                    <label for="Ville">Ville </label>  <input list="ville" type="text" id="Ville" name="Ville" >
+                    <label for="Ville">Ville </label>  <input list="ville" type="text" id="Ville" name="RVille" >
                         <datalist id="ville" >
                                 <?php listeselect($_SESSION['ville'],'Nomvil');?>
                         </datalist>
                 </div>
 
                 <div class="contain">
-                    <label for="Pays">Pays </label>  <input type="text" id="Pays" name="Pays"  list="pays" >
+                    <label for="Pays">Pays </label>  <input type="text" id="Pays" name="RPays"  list="pays" >
                     <datalist id="pays" >
                        <?php listeselect($_SESSION['pays'],'Nompay');
                         ?>
@@ -68,11 +68,11 @@ OpenSession();
                 </div>
 
                 <div class="contain">
-                    <label for="Site">Site </label>  <input type="text" id="Site" name="Site" placeholder="Casbas">    
+                    <label for="Site">Site </label>  <input type="text" id="Site" name="RSite" placeholder="Casbas">    
                 </div>
                             
             
-            <button id="search" name="search">Valider</button>      
+            <button type="submit" id="search" name="valider" >Valider</button>      
              </form>   
         </section>
 
@@ -82,19 +82,16 @@ OpenSession();
             <div id="result">
                 <h3>Résultat de la recherche</h3>
                 <a href="">Resultat de recherche</a>
-            <?php 
-                rechercher();?>
+                <div>
+                    <?php rechercher();?>
+                </div>
+                        
+            
           </div>
 
         </section> 
     
     </div>
-    <script>
-        function f(name) {
-            <?php $_SESSION['nameCode'] = name; ?>
-            window.location.href="Ville Details.php";
-        }
-
-    </script>
+    
 </body>
 </html>

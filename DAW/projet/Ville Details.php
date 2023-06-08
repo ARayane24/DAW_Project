@@ -1,6 +1,5 @@
 <?php 
 include "API.php"; 
-OpenSession();
 ?>
 
 <!DOCTYPE html>
@@ -64,11 +63,8 @@ OpenSession();
           <img height="300px" width="100%" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.aV_h5zaBxVVPPnm78Flj9AHaE8%26pid%3DApi&f=1&ipt=4aef9960d5a658aa72c1a9d75255289ae14f520cd4b7e8daef00285587e24be4&ipo=images" alt="flag">
 
           <ul>
-            <li>Ville : Casbas</li>
-            <li>Pay   : Alger (DZD)</li>
-            <li>Description : <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quasi voluptatibus quod et praesentium natus illum commodi facere harum aspernatur accusamus accusantium vero est id, fuga adipisci nesciunt itaque provident laboriosam. Provident quo error ex reiciendis fugiat suscipit cupiditate minus? Rem temporibus ratione possimus deleniti incidunt dicta consequatur quos, aut expedita vero fugiat corporis facere tenetur delectus libero totam magni quis minus veritatis consequuntur, eius earum nam at. Ad dolor, consequatur dolores rem, sint harum id ipsa est voluptatibus eum corporis optio sequi voluptatum nisi doloremque! Nobis voluptate quos omnis dignissimos eaque perspiciatis, veritatis similique a tempore nostrum eos pariatur atque distinctio ab consequatur quis reprehenderit eius ipsam quasi voluptatibus vero ad saepe cumque aperiam. Earum repudiandae facilis omnis illum, perferendis harum doloribus maxime pariatur consequuntur, maiores eos ipsam, consectetur fugit consequatur dolorem aspernatur cumque itaque totam suscipit expedita id reiciendis voluptatem? Repudiandae hic dicta obcaecati libero et mollitia porro sequi labore esse est sit non ut eveniet, cumque iusto corporis. Officiis autem hic pariatur saepe. Fuga quos molestiae soluta velit modi! Eveniet in cumque fuga doloribus animi accusantium sint eum eius ipsam quidem, recusandae nesciunt molestias officiis, consequuntur voluptatem unde voluptatibus. Magni quis saepe molestiae itaque aut sapiente sit adipisci esse nam quia tempora non eaque quisquam placeat sed, commodi porro, exercitationem dolorum est, id sint officia dolor. Labore, culpa libero at necessitatibus voluptatem quae dolores qui eveniet fugit. Perspiciatis nemo ab, quidem aperiam, laborum enim magni sunt blanditiis mollitia vero velit eum fuga eligendi nulla laudantium id, odit obcaecati? Doloremque vel esse necessitatibus. </li>
-            <li>Sites : Casbas <br> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae corporis facilis doloribus! Magnam dolor deleniti laborum consequatur quasi, molestias autem!</li>
-          </ul>
+            <?php detail(); ?>
+           </ul>
         </section>
 
         <section id="vill-photos">
