@@ -88,8 +88,10 @@ OpenSession();?>
                     </div>
                 </div>
 
-                <h4>plus de details</h4>
+                <div class="ligne"></div></br>
 
+                <h4>plus de details</h4>
+                
                 <div id="tourist-areas">
                     <div class="contain">
                         <label for="Hôtels">Hôtels </label> <input type="text" id="Hôtels" name="Hôtels" size="20">
@@ -135,7 +137,8 @@ OpenSession();?>
              </form>  
             
         </section>
-    </div>              
+    </div> 
+                 
         <dialog id="DialogAddPays" >
             <form method="POST" action="API.php">
                 <h2>Ajouter Pays</h2>
