@@ -15,6 +15,75 @@ OpenSession();
     <!--my web site icon-->
     <link rel="icon" href="./src imgs/png-transparent-hotel-ligarb-tourism-travel-agency-hotel.svg" >
     <!--my web site title-->
+    
+    <style>
+            #rech{ 
+                margin: 10px;
+                padding: 20px;
+                width: 98%;
+            }
+
+
+            #search-result>li{
+                margin: 10px;
+                display:flex;
+
+                justify-content: space-between;
+                border: solid;
+                border-style: 30px solid;
+                border-radius: 30px;
+
+                /* Add shadows to create the "card" effect */
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: .3s; 
+            
+            }
+
+            #search-result a {
+                height: 40px;
+                font-style: black;
+                padding: 14px 16px;
+                font-size: 30px;
+            }
+            
+
+            #search-result img {
+                margin: 6%;
+                width: 40px;
+                height: 40px;
+                
+                float: right;
+            }
+
+
+            #search-result .icons{
+                width: 20%;
+                margin: 3px;
+                margin: 10px;
+                float: right;
+                display: flex;
+                justify-content: center;
+            }
+
+            #search-result button{
+                border: none;
+                background: none;
+            }
+
+            /* Change the color of links on hover */
+            #search-result li:hover {
+                border-radius: 15px;
+                background-color: #d4edffc0;
+                font-style: black;
+            }
+
+
+            #search-result .ref{
+                width: 70%;
+                padding-left: 10px;
+                margin-top: 15px;
+            }
+    </style>
     <title>Agence de Voyages</title>
 </head>
 <body>
@@ -73,7 +142,7 @@ OpenSession();
                             
             
             <button type="submit" id="search" name="valider" >Valider</button>      
-             </form>   
+             </form>
         </section>
 
         <section id="search-Result-Section">
@@ -82,16 +151,15 @@ OpenSession();
             <div id="result">
                 <h3>Résultat de la recherche</h3>
                 <a href="">Resultat de recherche</a>
-                <div>
+ 
+                <div id="rech">
                     <?php rechercher();?>
                 </div>
-                        
-            
-          </div>
-
+            </div>
         </section> 
     
     </div>
-    
+    <script>
+    </script>  
 </body>
 </html>

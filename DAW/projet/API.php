@@ -11,10 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      insertpays();
      elseif(isset($_POST['Continent']))
         insertVille();
+
+    if(isset($_GET['liendelete']))
+        supprimerVille();
+        
+            
 }
 
 
 function insertContinant(){
+    $connect = connecter();
     if ( !($connect) ) {
         die ('Connection Failed');
     }else{
@@ -58,6 +64,7 @@ function insertVille(){
         $pays= $_POST['Pays'];
         $ville= $_POST['Ville2'];
         $Descriptif= $_POST['Descriptif'];
+        
         if ($ville!="" and $pays!="" ){
         foreach ( $_SESSION["pays"] as $i ) { 
             if ($i['Nompay']===$pays) {
@@ -67,31 +74,47 @@ function insertVille(){
         $pays=$i['Idpay'];
         
             $query = "INSERT INTO ville( Nomvil, descvil, Idpay) VALUES ('$ville','$Descriptif','$pays');";
-        $result = mysqli_query($connect, $query);
+        mysqli_query($connect, $query);
        
-        
-
-        echo "Done" ; 
         $idvil=mysqli_insert_id($connect);
 
-        $hotel= $_POST['hotels'];
+        
+       if (isset($_POST['hotles'])){
+        $hotel= $_POST['hotles'];
+        print_r($hotel);
         if ( $hotel != '' ){ 
             foreach($hotel as $i ){ 
-                insertNaiss($idvil,$i,'Hotel',$connect);
+                insertNaiss($idvil,$i,'Hotel');
             }
-        }
+        }}
+
+
+         if (isset($_POST['Restaurantss'])){
         $restaurant= $_POST['Restaurantss'];
+        print_r($restaurant);
         if ( $restaurant != '' ){ 
             foreach($restaurant as $i ){ 
-                insertNaiss($idvil,$i,'Restaurant',$connect);
+                insertNaiss($idvil,$i,'Restaurant');
             }
-        }
+        }}
+
+        if (isset($_POST['Garess'])){
         $gares= $_POST['Garess'];
+        print_r($gares);
         if ( $gares != '' ){ 
             foreach($gares as $i ){ 
-                insertNaiss($idvil,$i,'Gare',$connect);
+                insertNaiss($idvil,$i,'Gare');
             }
-        }
+        }}
+        
+        if (isset($_POST['Aeroports'])){
+            $Aeroports= $_POST['Aeroports'];
+            print_r($Aeroports);
+            if ( $Aeroports != '' ){ 
+                foreach($Aeroports as $i ){ 
+                    insertNaiss($idvil,$i,'Aeroports');
+                }
+            }}
     }
 
     }
@@ -99,34 +122,11 @@ function insertVille(){
     exit;
 }
 
-function insertNaiss($idvil,$name,$type,$connect){
-        $query = "INSERT INTO necessaire(typenec,nomnec,Idvil) Values ('$type','$name','$idvil');";
+function insertNaiss($idvil,$name,$type){
+    $connect=connecter();
+        $query = "INSERT INTO necessaire (typenec,nomnec,Idvil) Values ('$type','$name','$idvil');";
         $result = mysqli_query($connect, $query);
 }
-
-  
-// function Sauvgarder(){ 
-//         $connect = connecter();
-//         if ( !($connect) ) {
-//             die ('Connection Failed');
-//         }else{
-            
-//             $hotel= $_POST['hotel'];
-             
-//             $restaurant= $_POST['restaurantazes'];
-//             $Site= $_POST['Site'];
-//             $aeropore= $_POST['Aeroports'];
-//             $gare= $_POST['Gares'];
-           
-//             $filephoto = $_FILES['Photos']['name'];
-//             $tempphoto= $_FILES['Photos']['tmp_name'];
-//             move_uploaded_file($tempphoto,$filephoto);
-            
-//             $query = "insert into contient values ('$incr','$name');";
-//             $result = mysqli_query($connect, $query);
-//             echo "vous avez sauvgarder avec succés !";
-//         }
-// }
 
 function OpenSession(){
     $connect = connecter();
@@ -148,39 +148,39 @@ function OpenSession(){
 }
 
 
-function refreshDynamiquePays (){
+// function refreshDynamiquePays (){
     
-        $continant = $_POST['Continent'];
-        foreach ( $_SESSION["contient"] as $i ) { 
-            if ($i['Nomcon']===$continant) {
-                break;
-            }
-        } 
-        $_SESSION["paysF"] = filtertable( $_SESSION["pays"],$i["Idcon"],'Idcon');  
-}
+//         $continant = $_POST['Continent'];
+//         foreach ( $_SESSION["contient"] as $i ) { 
+//             if ($i['Nomcon']===$continant) {
+//                 break;
+//             }
+//         } 
+//         $_SESSION["paysF"] = filtertable( $_SESSION["pays"],$i["Idcon"],'Idcon');  
+// }
 
-function refreshDynamiqueVille (){
-$pays= $_POST["Pays"];
-foreach ( $_SESSION["pays"] as $i ) { 
-    if ($i['Nompay']===$pays) {
-        break;
-    }
-}
-$_SESSION["villeF"] =filtertable( $_SESSION["ville"],$i['Idpay'],'Idpay'); 
-}
+// function refreshDynamiqueVille (){
+// $pays= $_POST["Pays"];
+// foreach ( $_SESSION["pays"] as $i ) { 
+//     if ($i['Nompay']===$pays) {
+//         break;
+//     }
+// }
+// $_SESSION["villeF"] =filtertable( $_SESSION["ville"],$i['Idpay'],'Idpay'); 
+// }
 
 
-function filtertable($tableau,$codeFK,$column){
-    $i=0;
-    $tb=array();
-    foreach( $tableau as $a ){
-        if ( $a[$column] == $codeFK ){
-            $tb[$i]= $a;
-            $i=$i+1;
-        }
-    }
-    return $tb;
-}
+// function filtertable($tableau,$codeFK,$column){
+//     $i=0;
+//     $tb=array();
+//     foreach( $tableau as $a ){
+//         if ( $a[$column] == $codeFK ){
+//             $tb[$i]= $a;
+//             $i=$i+1;
+//         }
+//     }
+//     return $tb;
+// }
 
 
 
@@ -190,20 +190,6 @@ function listeselect($table,$code){
         echo "<option value='".$i[$code]."'>";
         }
 } 
-
-
-// function recher(){
-//     $connect = connecter();
-//     $selectJson = json_encode([0,0,0]);
-//     if ( !($connect) )
-//         die ('Connection Failed');
-//     else{
-//         $sql2 = $connect->query("SELECT * FROM ville;");
-//         $a = $sql2->fetch_all(MYSQLI_ASSOC);
-//         $selectJson = json_encode($a);
-//         }
-//     return $selectJson;
-// }
 
 
 function rechercher()
@@ -234,18 +220,55 @@ function rechercher()
             else { 
                 $_SESSION["recherch"] = $a;
                 $cpt=0;
+                echo "<ul id= search-result>";
                 foreach ($a as $i ) 
-                    {
-                        echo "<p style = 'border : 1px solid; border-radius: 3px; margin: 5px; padding:5px;' 
-                     ><a href='Ville Details.php?lien=$cpt'>".$i['Nomvil']."</a> /  ".$i['descvil']." </p>";
+                    { echo"
+                    <li>
+                            <span class='ref' onmousedown = 'window.location.href = 'alger''>
+                                <a href='Ville Details.php?lien=$cpt'>".$i['Nomvil']."</a>
+                            </span>
+                            
+                            <span class='icons'>
+                            <button onclick=''><img src='./src imgs/pen.png' alt='edit'></button>
+                                <a  href='index.php?liendelete=".$i['Idvil']."'> <img src='./src imgs/trash-bin.png'></a>
+                            </span>
+                        
+                    </li>";
                      $cpt=$cpt+1;
                     }
-                    
+                    echo "</ul>";
 
             }
            
         }
     }
+}
+
+function suppnaiss($idvil){
+    $connect = connecter();
+    if($connect){
+        $sql = "DELETE FROM necessaire WHERE Idvil = $idvil ;";
+        $connect->query($sql);
+    }
+    
+}
+
+function supprimerVille(){
+    $connect = connecter();
+    if($connect){
+        if(isset($_GET['liendelete'])){   
+            $i=$_GET['liendelete'];
+            $a=$_SESSION['recherch'];
+            foreach ( $a as $Session)
+            if ($i==$Session['Idvil']){
+                 suppnaiss($i);
+                $sql = "DELETE FROM ville WHERE Idvil = $i ;";
+                $connect->query($sql); break;
+            }
+        }
+    }
+    header("Location:index.php");
+    exit;
 }
 
 function detail(){

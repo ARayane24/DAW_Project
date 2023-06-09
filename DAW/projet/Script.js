@@ -17,3 +17,4 @@ function closeDialog(namedig) {
     var dialog = document.getElementById(namedig);
     dialog.close();
 }
+
