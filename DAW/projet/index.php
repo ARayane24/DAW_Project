@@ -10,107 +10,45 @@ OpenSession();
     <meta name="keywords" content="">
     <meta name="description" content="this page is the home page of "/>
   
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="./Style.css">
 
     <!--my web site icon-->
     <link rel="icon" href="./src imgs/png-transparent-hotel-ligarb-tourism-travel-agency-hotel.svg" >
     <!--my web site title-->
-    
-    <style>
-            #rech{ 
-                margin: 10px;
-                padding: 20px;
-                width: 98%;
-            }
-
-
-            #search-result>li{
-                margin: 10px;
-                display:flex;
-
-                justify-content: space-between;
-                border: solid;
-                border-style: 30px solid;
-                border-radius: 30px;
-
-                /* Add shadows to create the "card" effect */
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                transition: .3s; 
-            
-            }
-
-            #search-result a {
-                height: 40px;
-                font-style: black;
-                padding: 14px 16px;
-                font-size: 30px;
-            }
-            
-
-            #search-result img {
-                margin: 6%;
-                width: 40px;
-                height: 40px;
-                
-                float: right;
-            }
-
-
-            #search-result .icons{
-                width: 20%;
-                margin: 3px;
-                margin: 10px;
-                float: right;
-                display: flex;
-                justify-content: center;
-            }
-
-            #search-result button{
-                border: none;
-                background: none;
-            }
-
-            /* Change the color of links on hover */
-            #search-result li:hover {
-                border-radius: 15px;
-                background-color: #d4edffc0;
-                font-style: black;
-            }
-
-
-            #search-result .ref{
-                width: 70%;
-                padding-left: 10px;
-                margin-top: 15px;
-            }
-    </style>
     <title>Agence de Voyages</title>
 </head>
 <body>
-    <nav>
-        <!--informations des étudiants-->
-        <div id="Etudiant">
-            <h3>Realisé par :</h3>
-            <?php Binom()?>
+    <nav id="job" onclick="onclickShowHide()">
+        <div >
+         <a  id="show-hide">&#10095;</a>
         </div>
-        <div class="ligne"></div></br>
+        <div id="nav" style="display: none;">
+            <div id="Etudiant">
+                <h3>Realisé par :</h3>
+                <?php Binom();?>
+            </div>
+
+            <div class="ligne"></div> </br>
+
+            <div id="AjouterVille">
+                <a href="./Ajouter ville.php">Ajouter ville</a>
+            </div>
+        </div>
         
-        <div id="AjouterVille">
-            <a href="./Ajouter ville.php">Ajouter ville</a>
-        </div>
     </nav>
 
     <div id="Bodyleft">
         <!---->
         <header>
-                <img height="300px" width="100%" src="./src imgs/guide de voyage.jpg" alt="guide de voyage">
+                <img height="240px" width="100%" src="./src imgs/guide de voyage.jpg" alt="guide de voyage">
             
             <H1>Le titre de site de voyages</H1>
         </header>
         
         <section>
             <h3>Recherche</h3>
-            <form id="Recherche" method="POST" >
+            <form  method="POST" >
+                <div id="Recherche">
                 <div class="contain">
                     <label for="Continent">Continent </label> 
                     <input type="text" id="Continent" name="RContinent" size="10" list="continent">
@@ -139,27 +77,128 @@ OpenSession();
                 <div class="contain">
                     <label for="Site">Site </label>  <input type="text" id="Site" name="RSite" placeholder="Casbas">    
                 </div>
-                            
+                </div>           
             
             <button type="submit" id="search" name="valider" >Valider</button>      
              </form>
         </section>
 
-        <section id="search-Result-Section">
-            <div class="ligne"></div>
+        <section id="search-Result-Section" style="display: block;">
+            <span>
+                <div class="ligne"></div>
+            </span>
+            
+            </br>
+
+            
 
             <div id="result">
                 <h3>Résultat de la recherche</h3>
-                <a href="">Resultat de recherche</a>
- 
-                <div id="rech">
-                    <?php rechercher();?>
-                </div>
+                
+           
+            
+                <!-- php code -->
+            
+          </div>
+
+          <div id="rech">
+                <ul id= search-result>
+                    <li>
+                        <span class="ref" onmousedown = "window.location.href = 'affiche ville.php'">
+                            <a href="affiche ville.php" >Alger</a>
+                        </span>
+                            
+                        <span class="icons">
+                            <button onclick="alert('hh');"><img src="./src imgs/pen.png" alt="edit"></button>
+                            <button onclick=""><img src="./src imgs/trash-bin.png" alt="delete"></button>
+                        </span>                
+                    </li>
+
+                    <li>
+                        
+                        <span class="ref" onmousedown = "window.location.href = 'alger'">
+                            <a href="alger" ></a>
+                        </span>
+                        
+                        <span class="icons">
+                            <button onclick="alert('hh');"><img src="./src imgs/pen.png" alt="edit"></button>
+                            <button onclick=""><img src="./src imgs/trash-bin.png" alt="delete"></button>
+                       </span>
+
+                    </li>
+
+                    <li>
+                        <span class="ref" onmousedown = "window.location.href = 'alger'">
+                            <a href="alger" >Alger Alger Alger</a>
+                        </span>
+                            
+                        <span class="icons">
+                            <button onclick="alert('hh');"><img src="./src imgs/pen.png" alt="edit"></button>
+                            <button onclick=""><img src="./src imgs/trash-bin.png" alt="delete"></button>
+                        </span>                        
+                    </li>
+                </ul>
+
             </div>
         </section> 
-    
+        <section class="goTop" style="display: none;">
+            <button id="goTop-button" onclick="window.location.href = '#'"><img src="./src imgs/up-arrow.png" alt="go top"></button>
+        </section>
     </div>
+
+    <br>
     <script>
+        
+                //////
+
+            /* nav fonctions*/
+            let isShown = false;
+            let clicked = false;
+            let element = document.getElementById('job');
+
+            function onclickShowHide(){
+                clicked = !clicked;
+            }
+            
+            element.addEventListener("mouseover", function() {
+                if (!isShown && !clicked) {
+                    showHide();
+                }
+            });
+
+            element.addEventListener("mouseout", function() {
+                if (isShown && !clicked) {
+                    showHide();
+                }
+            });
+
+            
+            
+
+            function showHide(){
+                isShown = !isShown;
+                let nav = document.getElementById('nav');
+                let showHide = document.getElementById('show-hide');
+
+                if (isShown) {
+                   
+                    showHide.innerHTML ='&#10094;';
+                  
+                    
+                    nav.style.display = "block";
+                    document.getElementById('job').style.borderRadius  = "25px";
+                }else{
+                    
+                    showHide.innerHTML ='&#10095;';
+                    
+
+                    nav.style.display = "none";
+                    document.getElementById('job').style.borderRadius  = "100px";
+                }
+            }
+
+            
+            //////
     </script>  
 </body>
 </html>

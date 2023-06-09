@@ -17,19 +17,27 @@
     <title>Ajouter Ville</title>
 </head>
 <body>
-    <nav>
+   
+    <nav id="job" onclick="onclickShowHide()">
+        <div >
+         <a  id="show-hide">&#10095;</a>
+        </div>
+        <div id="nav" style="display: none;">
+            <div id="Etudiant">
+                <h3>Realisé par :</h3>
+                <?php Binom();?>
+            </div>
+
+            <div class="ligne"></div> </br>
+
+            <div id="AjouterVille">
+                <a href="./index.php">page d’accueil</a>
+            </div>
+        </div>
         
-        <div id="Etudiant">
-            <h3>Realisé par :</h3>
-             <?php Binom();?>
-        </div>
-
-        <div class="ligne"></div> </br>
-
-        <div id="AjouterVille">
-            <a href="./index.php">page d’accueil</a>
-        </div>
     </nav>
+    
+    
     
     <div id="Bodyleft">
         <!---->
@@ -170,9 +178,14 @@
                 </ul>
 
             </div>
+        </section>
+        <section class="goTop" >
+            <button id="goTop-button" style="display: none;" onclick="window.location.href = '#'"><img src="./src imgs/up-arrow.png" alt="go top"></button>
         </section> 
+    </div>
 
-        <script>
+    <script>
+            /* img slide fonctions */
             let slideIndex = 1;
             let start = false;
 
@@ -181,6 +194,7 @@
                 if(start)
                     showSlides();
             }
+
 
             showSlides(slideIndex);
 
@@ -218,29 +232,85 @@
                 }
             }
             
-
             //////
 
+            /* nav fonctions*/
+            let isShown = false;
+            let clicked = false;
+            let element = document.getElementById('job');
+
+            function onclickShowHide(){
+                clicked = !clicked;
+            }
+            
+            element.addEventListener("mouseover", function() {
+                if (!isShown && !clicked) {
+                    showHide();
+                }
+            });
+
+            element.addEventListener("mouseout", function() {
+                if (isShown && !clicked) {
+                    showHide();
+                }
+            });
+
+            
+            
+
+            function showHide(){
+                isShown = !isShown;
+                let nav = document.getElementById('nav');
+                let showHide = document.getElementById('show-hide');
+
+                if (isShown) {
+                   
+                    showHide.innerHTML ='&#10094;';
+                  
+
+
+                    nav.style.display = "block";
+                }else{
+                    
+                    showHide.innerHTML ='&#10095;';
+                    
+
+                    nav.style.display = "none";
+                }
+            }
+            //////
+
+            /* Show more details functions */
+            let goTopButton = document.getElementById('goTop-button');
             function showAeroports(){
+
                 let showAeroports = document.getElementById('rech');
                 showAeroports.style.display = 'block';
                 // use php to get list
+
                 
+                goTopButton.style.display = 'block';
             }
 
             function showRestaurantss(){
                 // use php to get list
+
+                goTopButton.style.display = 'block';
             }
 
             function showHotels(){
+               
                 // use php to get list
+
+                goTopButton.style.display = 'block';
             }
 
             function showGares(){
                 // use php to get list
+
+                goTopButton.style.display = 'block';
             }
 
         </script>
-    </div>
 </body>
 </html>

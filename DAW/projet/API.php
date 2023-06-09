@@ -1,7 +1,7 @@
 <?php
 session_start();
 function connecter(){ 
-    return new mysqli('localhost' , 'root' , '' , 'voyage',3308);
+    return new mysqli('localhost' , 'root' , '' , 'voyage');
 }
 
 
