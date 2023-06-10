@@ -37,10 +37,10 @@ OpenSession();?>
         
     </nav>
     
-    <div id="Bodyleft">
+    <div id="Bodyleft" style="border-radius: 30px;">
         <!---->
         <header>
-            <img height="300px" width="100%" src="./src imgs/guide de voyage.jpg" alt="guide de voyage">
+            <img style="border-radius: 30px 30px 0px 0px;" height="300px" width="100%" src="./src imgs/guide de voyage.jpg" alt="guide de voyage">
             <H1>Le titre de site de voyages</H1>
         </header>
 
@@ -80,11 +80,8 @@ OpenSession();?>
                     </div>
                     <div class="contain">
                         <label for="Photos">Photos </label> <br>
-                        <input type="file" id="Photos" name="Photos" multiple="multiple" placeholder="photo1.png" required >
-                        <button id="add" onclick="" name="add">Ajouter</button>
-                        <select name="Photos" size="5" multiple>  
-
-                        </select>        
+                        <input type="file" id="Photos" name="Photos" multiple="multiple" placeholder="photo1.png" required>
+      
                     </div>
                 </div>
 
@@ -141,15 +138,15 @@ OpenSession();?>
         <dialog id="DialogAddPays" >
             <form method="POST" action="API.php">
                 <h2>Ajouter Pays</h2>
-                    <div>
-                        <input type="text" name="ContinentPays" size="5" list="continent" required>
+                    <div class="contain">
+                    <label for="ContinentPays">Continent  </label><input type="text" name="ContinentPays" size="5" list="continent" required>
                         <datalist id='continent'>
                             <?php listeselect($_SESSION['contient'],'Nomcon');?>
                         </dataliste>
                     </div>
                     
-                        <div>
-                            <input type="text"  name="addPays">
+                        <div class="contain">
+                            <label for="addPays">Pays  </label> <input type="text"  name="addPays" required>
                         </div>
                     
                     <button onclick="closeDialogADD('DialogAddPays');">ADD</button>
@@ -157,12 +154,13 @@ OpenSession();?>
                             <script>
                                 function closeDialogADD(namedig){
                                     var dialog = document.getElementById(namedig);
+                                    alert('Ajouté avec succes');
                                     dialog.close();
                                 }
                             </script>
             
                 </form>
-            </dialog> 
+        </dialog> 
                          
     
     <script src="./Script.js"></script>  

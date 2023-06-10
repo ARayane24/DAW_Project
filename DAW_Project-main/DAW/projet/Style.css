@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, Serif;
 }
 
         /* scroll bar */
@@ -44,9 +44,9 @@ body{
 .ligne{ 
     width: 80%;
     height: 4px;
+
     border-radius: 5px;
-  
-    margin: 0 auto;
+
     text-align: center;
     
     background-color: #adddff;
@@ -147,14 +147,32 @@ H1 {
     position: absolute;
     top: 80%;
     left: 50%;
+    border: #393d40;
+    
+    font-family: Serif;
+    font-size: 40px;
+    opacity: 10;
     transform: translate(-50%, -50%);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
 
 
 h3{
     margin: 20px auto;
-
+    font-family: Serif;
+    font-size: x-large;
     text-align: center;
+}
+
+h4{
+    margin: 20px auto;
+    margin-left: 10px;
+    font-family: Serif;
+    height: 40px;
+    margin-right: 10px;
+    font-style: black;
+    font-size: 20px;
+    
 }
 
 li { 
@@ -248,7 +266,7 @@ form{
 
 #Recherche , #main-info {
     display: grid;
-    width: 100%;
+    width: 60%;
     grid-template-rows: repeat(2,50%);
     grid-template-columns: repeat(2,50%);
 }
@@ -366,7 +384,7 @@ form>span{
   width: 100%;
 }
 
-#rech{ 
+.rech{ 
     margin: 10px;
     margin-bottom: 30px;
     width: 98%;
@@ -448,11 +466,12 @@ form>span{
 
 
 .slideshow img {
-    border-radius: 100px 100px 0px 0px;
+  border-radius: 30px 30px 0px 0px;
     vertical-align: middle;
     height: 300px;
 }
 .slideshow-container {
+  border-radius: 30px 30px 0px 0px;
     max-width: 1000px;
     margin: auto;
   }
@@ -574,3 +593,33 @@ form>span{
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
   }
+
+
+
+
+  /* The Modal (background) */
+#DialogAddPays{
+  height: 50%;
+  width: 50%;
+  left: 70%;
+  top: 60%;
+
+  border-radius: 100px;
+  border: none;
+  text-align: center;
+
+}
+
+#DialogAddPays form{
+  margin: 3%;
+  width: 60%;
+  height: 40%;
+
+
+  align-items: center;
+  justify-content: center;
+
+
+
+}
+  
