@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         elseif(isset($_POST['x']))
             supprimerVille($_POST['x']);
                 elseif(isset($_POST['Idvilnec']))
-                    recherchNaiss();
+                    recherchNaiss($LOL);//remove lol lol
                     elseif(isset($_POST['y'])) 
                         supprimerNaiss($_POST['y']);
 }
@@ -217,7 +217,7 @@ function rechercher()
                             ";
             $a = $sql->fetch_all(MYSQLI_ASSOC);
             if($a == null) 
-            echo " <li>Aucun Resultat Trouver ! </li>";
+            echo " <li style=' text-align: center;'><span class='ref' style=' width : 100%'> <h4> Aucun Resultat Trouver !</h4></span> </li>";
             else { 
                 $_SESSION["recherch"] = $a;
                 $cpt=0;
@@ -244,7 +244,7 @@ function rechercher()
                     </div>
                 </section> 
                 <section id='goTop' style='display: block;'>
-                    <button id='goTop-button' onclick='window.location.href = '#''><img src='./src imgs/up-arrow.png' alt='go top'></button>
+                    <button id='goTop-button' onclick='goTop()'><img src='./src imgs/up-arrow.png' alt='go top'></button>
                 </section>
             </div>";
         }

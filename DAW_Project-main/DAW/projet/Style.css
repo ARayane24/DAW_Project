@@ -48,9 +48,16 @@ body{
     border-radius: 5px;
 
     text-align: center;
-    
     background-color: #adddff;
 }
+
+#ligne{
+  transform:translateX(15%);
+ 
+}
+
+
+
 
 
 
@@ -105,7 +112,7 @@ nav div>.ligne{
     padding: 0;
 
     margin-top: 2.5%;
-    margin-right: 4%;
+    margin-right: 5%;
     margin-left: 1%;
     margin-bottom: 2.5%;
     
@@ -116,7 +123,7 @@ nav div>.ligne{
 
   /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.544);
-    transition: .5s; 
+    transition: .7s; 
 }
 
 
@@ -126,8 +133,111 @@ nav div>.ligne{
   }
 
 
-  header>img{
+  
+
+  #show>#id1 {
+    margin: 5px;
+    margin-left: 0;
+    margin-top: 0;
+    width:20%;
+    height: 260px;
+    transform: skew(15deg);
+    background: #555;
+    overflow:hidden;
+    position: relative;
+    transition: 1s;
+    left: -1%;
+  }
+
+  #show>#id2 {
+    margin: 5px;
+    margin-top: 0;
+
+    width:20%;
+	height: 260px;
+	transform: skew(15deg);
+	background: #555;
+  overflow:hidden;
+  position: relative;
+  transition: 1s;
+  left: -1%;
+
+  }
+  #show>#id3 {
+    margin: 5px;
+    margin-top: 0;
+      
+      
+      height: 260px;
+      width:20%;
+    overflow:hidden;
+    transform: skew(15deg);
+    position: relative;
+    transition: 1s;
+    left: -1%;
+
+  }
+  #show>#id4 {
+    margin: 5px;
+    margin-top: 0;
+    width:20%;
+	height: 260px;
+  transform: skew(15deg);
+	background: #555;
+  overflow:hidden;
+  position: relative;
+  transition: 1s;
+  left: -1%;
+  }
+  #show>#id5 {
+    margin: 5px;
+    margin-top: 0;
+    margin-right: 0;
+    width:20%;
+	  height: 260px;
+	  transform: skew(15deg);
+	  background: #555;
+    overflow:hidden;
+    position: relative;
+    transition: 1s; 
+    left: -1%;
+
+  }
+
+  #show>#id1:hover{
+    margin: 0px;
+    width: 100%;
+    transform: skew(0);
+  }
+  #show>#id2:hover{
+    margin: 0px;
+    width: 100%;
+    transform: skew(0);
+  }
+  #show>#id3:hover{
+    margin: 0px;
+    width: 100%;
+    transform: skew(0);
+  }
+  #show>#id4:hover{
+    margin: 0px;
+    width: 100%;
+    transform: skew(0);
+  }
+  #show>#id5:hover{
+    margin: 0px;
+    width: 100%;
+    transform: skew(0);
+  }
+  
+  #show{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    overflow:hidden;
     border-radius: 100px 100px 0px 0px;
+    position: relative;
   }
 
 header { 
@@ -138,7 +248,7 @@ header {
     justify-content: center;
     position: relative;
     text-align: center;
-
+    overflow: hidden;
     color: #ffffff;
 }
 
@@ -468,7 +578,7 @@ form>span{
 .slideshow img {
   border-radius: 30px 30px 0px 0px;
     vertical-align: middle;
-    height: 300px;
+    height: 260px;
 }
 .slideshow-container {
   border-radius: 30px 30px 0px 0px;
@@ -618,8 +728,5 @@ form>span{
 
   align-items: center;
   justify-content: center;
-
-
-
 }
   

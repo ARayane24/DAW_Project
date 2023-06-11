@@ -40,8 +40,29 @@ OpenSession();?>
     <div id="Bodyleft" style="border-radius: 30px;">
         <!---->
         <header>
-            <img style="border-radius: 30px 30px 0px 0px;" height="300px" width="100%" src="./src imgs/guide de voyage.jpg" alt="guide de voyage">
-            <H1>Le titre de site de voyages</H1>
+            <div id="show" style="border-radius: 30px 30px 0px 0px;">
+                <!-- Full-width images -->
+                <div class="mySlides fade" id="id1" style="border-radius: 30px 0px 0px 0px;" >
+                    <img  height="260px" width="100%" src="./src imgs/desert 1.jpg" style="width:100%">
+                </div>
+
+                <div class="mySlides fade" id="id2" >
+                    <img height="260px" width="100%" src="./src imgs/Alaska-itinerary-flowersglacier-3068918376.jpg" style="width:100%">
+                </div>
+
+                <div class="mySlides fade" id="id3" >
+                    <img height="260px" width="100%" src="./src imgs/city at night" style="width:100%">
+                </div>
+                
+                <div class="mySlides fade" id="id4" >
+                    <img height="260px" width="100%" src="./src imgs/see.jpg" style="width:100%">
+                </div>
+
+                <div class="mySlides fade" id="id5" style="border-radius: 0 30px 0 0;" >
+                    <img height="260px" width="100%" src="./src imgs/ice.jpg" style="width:100%">
+                </div>
+            </div>
+            <H1 id="h">Explore le monde</H1>
         </header>
 
         <section>    

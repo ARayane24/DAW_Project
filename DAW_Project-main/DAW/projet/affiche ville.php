@@ -93,7 +93,7 @@ OpenSession();?>
                     </div>
                 </div>
 
-            <div class='contain-affiche-ville' onmousedown = 'showRestaurantss()'>
+            <div class='contain-affiche-ville' onmousedown = 'showRestaurants()'>
                 <img src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.JSVPo_oDaFVCAaBeKXuYXQHaE8%26pid%3DApi&f=1&ipt=ce0ba9dd08b542d49729a12c1a6fab30d1fb12304af479dab8ed4b9c2ef94ff9&ipo=images' alt='voir Aéroports'>
                 <div class='overlay'>
                     <div class='text'>voir Restaurants</div>
@@ -119,11 +119,11 @@ OpenSession();?>
         <section>
     <div id='rech' style='display: block;'>
          <ul id= 'search-result' >   
-          <?php recherchNaiss(); ?> 
+          <?php //recherchNaiss(); ?> 
           </ul></div>
         </section>
     <section class='goTop' >
-        <button id='goTop-button' style='display: block;' onclick='window.location.href = '#''><img src='./src imgs/up-arrow.png' alt='go top'></button>
+        <button id='goTop-button' style='display: block;' onclick='window.location.href = "#"'><img src='./src imgs/up-arrow.png' alt='go top'></button>
         </section> 
 
     </div>
