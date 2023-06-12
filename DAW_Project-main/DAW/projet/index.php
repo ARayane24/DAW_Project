@@ -101,7 +101,6 @@ OpenSession();
         </section>
         <?php 
             rechercher();
-
         ?>
     <script>
         
@@ -329,7 +328,7 @@ OpenSession();
 
                 // Envoyer la requête avec la valeur en tant que paramètre
                 xhr.send("x=" + encodeURIComponent(x));
-                alert("la ville que vous avez selectionnee a ete supprimee" + x);
+                alert("la ville que vous avez selectionnee a ete supprimee");
                 location.reload();
             }
     </script>  

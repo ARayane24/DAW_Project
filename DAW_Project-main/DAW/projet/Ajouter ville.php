@@ -34,7 +34,7 @@ OpenSession();?>
                 <a href="./index.php">page d’accueil</a>
             </div>
         </div>
-        
+
     </nav>
     
     <div id="Bodyleft" style="border-radius: 30px;">
@@ -115,42 +115,28 @@ OpenSession();?>
                         <label for="Hôtels">Hôtels </label> <input type="text" id="Hôtels" name="Hôtels" size="20">
                         <button type="button" id="add" onclick="addHôtels()" name="add">Ajouter</button>
                         <select id="selectHôtels" name="hotles[]" size="5" multiple>  
-                            <option value="Hôtel1"> Hôtel1 </option>  
-                            <option value="Hôtel2"> Hôtel2 </option>  
-                            <option value="Hôtel3"> Hôtel3 </option>   
                         </select> 
                     </div>
                     <div class="contain">
                         <label for="Restaurants">Restaurants </label>  <input type="text" id="Restaurants" name="Restaurants" size="20">
                         <button type="button" id="add" onclick="addRestaurants()" name="add">Ajouter</button>
                         <select id="selectRestaurants" name="Restaurantss[]" size="5" multiple>  
-                            <option value="Restaurant1"> Restaurant1 </option>  
-                            <option value="Restaurant2"> Restaurant2 </option>  
-                            <option value="Restaurant3"> Restaurant3 </option>   
                         </select> 
                     </div>
                     <div class="contain">
                         <label for="Gares">Gares </label>  <input type="text" id="Gares" name="Gares" size="20">
                         <button type="button" id="add" onclick="addGares()" name="add">Ajouter</button>
-                        <select id="selectGares" name="Garess[]" size="5" multiple>  
-                            <option value="Gare1"> Gare1 </option>  
-                            <option value="Gare2"> Gare2 </option>  
-                            <option value="Gare3"> Gare3 </option>   
+                        <select id="selectGares" name="Garess[]" size="5" multiple>
                         </select> 
                     </div>
                     <div class="contain">
-                        <form action="">
                             <label for="Aéroports">Aéroports </label>  <input type="text" id="Aéroports" name="Aéroports" size="20">
                             <button type="button" id="add" onclick="addAéroport()" name="add">Ajouter</button>
                             <select id="selectAéroports" name="Aeroports[]" size="5" multiple>  
-                                <option value="Aéroport1"> Aéroport1 </option>  
-                                <option value="Aéroport2"> Aéroport2 </option>  
-                                <option value="Aéroport3"> Aéroport3 </option>   
                             </select> 
-                        </form>
                     </div>
-                </div>
-                <button id="add" onclick="submit" name="add">Submit</button>
+                </div> <button id="add" type="submit" onclick="" name="add">Submit</button>
+                
              </form>  
             
         </section>

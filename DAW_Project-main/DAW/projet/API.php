@@ -1,22 +1,22 @@
 <?php
 session_start();
 function connecter(){ 
-    return new mysqli('localhost' , 'root' , '' , 'voyage');
+    return new mysqli('localhost' , 'root' , '' , 'voyage',3308);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if(isset($_POST['ContinentPays']))
-     insertpays();
-     elseif(isset($_POST['Continent']))
+        insertpays();
+    if(isset($_POST['Continent']))
         insertVille();
-        elseif(isset($_POST['x']))
-            supprimerVille($_POST['x']);
-                elseif(isset($_POST['Idvilnec']))
-                    recherchNaiss($LOL);//remove lol lol
-                    elseif(isset($_POST['y'])) 
-                        supprimerNaiss($_POST['y']);
+    if(isset($_POST['x']))
+        supprimerVille($_POST['x']);
+        if (isset($_POST['Idvilnec']) && isset($_POST['Typenec'])) {
+            recherchNaiss();
+        }
+    if(isset($_POST['y'])) 
+        supprimerNaiss($_POST['y']);
 }
-
 
 function insertContinant(){
     $connect = connecter();
@@ -113,7 +113,8 @@ function insertVille(){
                 foreach($Aeroports as $i ){ 
                     insertNaiss($idvil,$i,'Aeroports');
                 }
-            }}
+            }
+        }
     }
 
     }
@@ -154,31 +155,32 @@ function listeselect($table,$code){
         }
 } 
 
-function recherchNaiss($i){ 
+function recherchNaiss(){ 
     $connect=connecter();
     if($connect){
-        if(isset($_POST['Idvilnec']) && (isset($_POST['Typenec']))){
-
-        $idvil =$_POST['Idvilnec'];
-        $type = $_POST['Typenec'];print_r($i);
-        $query = "SELECT * from necessaire where Idvil = $idvil and typenec='$type';";
+        $naiss=$_SESSION['Session'];
+        $idvil =$naiss['Idvil'];
+        if (isset($_GET['Typenec'])){
+            $type = $_GET['Typenec'];
+            $query = "SELECT * from necessaire where Idvil = $idvil and typenec='$type';";
             $result =$connect->query($query);
                 $a = $result->fetch_all(MYSQLI_ASSOC);
             if ($a != "") {
                 foreach($a as $row){    
-                        echo "<li>           
-                        <span class='ref' onmousedown = 'window.location.href = '#' '>
-                            <a href='#' >".$row['Nomnec']."</a>
-                        </span>
-                        <span class='icons'>
-                        <button onclick=''><img src='./src imgs/pen.png' alt='edit'></button>
-                        <button onclick='deletenec(".$row['Idnec'].")'><img src='./src imgs/trash-bin.png' alt='delete'></button>
+                    echo "<li>           
+                    <span class='ref' onmousedown = 'window.location.href = '#' '>
+                        <a href='#' >".$row['nomnec']."</a>
+                    </span>
+                    <span class='icons'>
+                    <button onclick=''><img src='./src imgs/pen.png' alt='edit'></button>
+                    <button onclick='deletenec(".$row['Idnec'].")'><img src='./src imgs/trash-bin.png' alt='delete'></button>
                     </span>
                     </li>" ;
                 }
             } else echo"Aucun resultat ! ";
         }
-    }  
+    }
+    exit;
 }
 
 function rechercher()
@@ -240,7 +242,6 @@ function rechercher()
                     
             }
            echo"</ul>
-                        
                     </div>
                 </section> 
                 <section id='goTop' style='display: block;'>
@@ -259,6 +260,8 @@ function supprimerNaiss($idnec) {
         $sql = "DELETE FROM necessaire WHERE Idnec = $idnec ;";
         $connect->query($sql);
     }
+    header("Location:affiche ville.php");
+    exit;
 }
 
 function suppnes($idvil){
@@ -289,6 +292,7 @@ if(isset($_GET['lien'])){
     $i=$_GET['lien'];
     $a=$_SESSION['recherch'];
     $Session = $a[$i];
+    $_SESSION['Session']= $Session;
     echo"
     <h2 id='Idvilnec'>".$Session['Nompay']." <span>(".$Session['Nomvil']."</span>,<span>".$Session['Idvil']."</span>)</h2>    
             <h3>description</h3>
