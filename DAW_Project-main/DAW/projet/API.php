@@ -1,6 +1,8 @@
 <?php
 session_start();
+
 function connecter(){ 
+    // connect a la base de donne
     return new mysqli('localhost' , 'root' , '' , 'voyage');
 }
 
@@ -11,9 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         insertVille();
     if(isset($_POST['x']))
         supprimerVille($_POST['x']);
-        if (isset($_POST['Idvilnec']) && isset($_POST['Typenec'])) {
+    if (isset($_POST['Idvilnec']) && isset($_POST['Typenec'])) {
             recherchNaiss();
-        }
+    }
     if(isset($_POST['y'])) 
         supprimerNaiss($_POST['y']);
 }
@@ -183,8 +185,7 @@ function recherchNaiss(){
     exit;
 }
 
-function rechercher()
-{       
+function rechercher(){       
     $connexion = connecter();
     
     echo "";
@@ -289,34 +290,34 @@ function supprimerVille($i){
 }
 
 function detail(){
-if(isset($_GET['lien'])){     
-    $i=$_GET['lien'];
-    $a=$_SESSION['recherch'];
-    $Session = $a[$i];
-    $_SESSION['Session']= $Session;
-    echo"
-    <h2 id='Idvilnec'>".$Session['Nompay']." <span>(".$Session['Nomvil']."</span>,<span>".$Session['Idvil']."</span>)</h2>    
-            <h3>description</h3>
-            <p>".$Session['descvil']."</p>";
-}
+    if(isset($_GET['lien'])){     
+        $i=$_GET['lien'];
+        $a=$_SESSION['recherch'];
+        $Session = $a[$i];
+        $_SESSION['Session']= $Session;
+        echo"
+        <h2 id='Idvilnec'>".$Session['Nompay']." <span>(".$Session['Nomvil']."</span>,<span>".$Session['Idvil']."</span>)</h2>    
+                <h3>description</h3>
+                <p>".$Session['descvil']."</p>";
+    }
 }
 
 function Binom(){
     echo"
-<ul>
-<li class='Grey'>OUAHABI Benhenni </li>
-<li class='Atoui'>ATOUI Rayane </li>
-<li>Spécialité : INFO </li>
-<li>Section : 1 </li>
-<li>Groupe : 6 </li>
-<li>E-Mail :
     <ul>
-        <li class='email'>Grey.lanisteur123@gmail.com    </li>
-        <li class='email'>At.rayane03@gmail.com    </li>
-    </ul> 
-</li>
+    <li class='Grey'>OUAHABI Benhenni </li>
+    <li class='Atoui'>ATOUI Rayane </li>
+    <li>Spécialité : INFO </li>
+    <li>Section : 1 </li>
+    <li>Groupe : 6 </li>
+    <li>E-Mail :
+        <ul>
+            <li class='email'>Grey.lanisteur123@gmail.com    </li>
+            <li class='email'>At.rayane03@gmail.com    </li>
+        </ul> 
+    </li>
 
-</ul>";
+    </ul>";
 }
 
 ?>
