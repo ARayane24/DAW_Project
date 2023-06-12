@@ -1,7 +1,7 @@
 <?php
 session_start();
 function connecter(){ 
-    return new mysqli('localhost' , 'root' , '' , 'voyage',3308);
+    return new mysqli('localhost' , 'root' , '' , 'voyage');
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -226,8 +226,9 @@ function rechercher()
                 
                 foreach ($a as $i ) 
                     { echo"
+                        <script> preparePage(); </script> 
                     <li>
-                            <span class='ref' onmousedown = 'window.location.href = 'affiche ville.php''>
+                            <span class='ref' onmousedown = 'gotoAfficheVille()'>
                                 <a href='affiche ville.php?lien=$cpt'>".$i['Nomvil']."</a>
                             </span>
                             
@@ -244,8 +245,8 @@ function rechercher()
            echo"</ul>
                     </div>
                 </section> 
-                <section id='goTop' style='display: block;'>
-                    <button id='goTop-button' onclick='goTop()'><img src='./src imgs/up-arrow.png' alt='go top'></button>
+                <section id='goTop' >
+                    <button id='goTop-button' style='display: block;' onclick='goTop()'><img src='./src imgs/up-arrow.png' alt='go top'></button>
                 </section>
             </div>";
         }

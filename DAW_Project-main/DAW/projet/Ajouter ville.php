@@ -10,19 +10,20 @@ OpenSession();?>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="./a_Global_CSS.css">
+    <link rel="stylesheet" href="./b_Ajouter ville_CSS.css">
 
     <!--my web site icon-->
     <link rel="icon" href="./src imgs/png-transparent-hotel-ligarb-tourism-travel-agency-hotel.svg" >
     <!--my web site title-->
     <title>Ajouter Ville</title>
 </head>
-<body>
+<body id='wallpaper'>
 <nav id="job" onclick="onclickShowHide()">
         <div>
          <a  id="show-hide">&#10095;</a>
         </div>
-        <div id="nav" style="display: none;">
+        <div id="nav">
             <div id="Etudiant">
                 <h3>Realisé par :</h3>
                 <?php Binom();?>
@@ -34,32 +35,32 @@ OpenSession();?>
                 <a href="./index.php">page d’accueil</a>
             </div>
         </div>
-
+        
     </nav>
     
-    <div id="Bodyleft" style="border-radius: 30px;">
+    <div id="Bodyleft" >
         <!---->
         <header>
-            <div id="show" style="border-radius: 30px 30px 0px 0px;">
+            <div id="show" >
                 <!-- Full-width images -->
-                <div class="mySlides fade" id="id1" style="border-radius: 30px 0px 0px 0px;" >
-                    <img  height="260px" width="100%" src="./src imgs/desert 1.jpg" style="width:100%">
+                <div class="mySlides fade" id="id1"  onmousedown="theme('red');">
+                    <img  height="260px" width="100%" src="./src imgs/desert 1.jpg" >
                 </div>
 
-                <div class="mySlides fade" id="id2" >
-                    <img height="260px" width="100%" src="./src imgs/Alaska-itinerary-flowersglacier-3068918376.jpg" style="width:100%">
+                <div class="mySlides fade" id="id2"  onmousedown="theme('green');">
+                    <img height="260px" width="100%" src="./src imgs/Alaska-itinerary-flowersglacier-3068918376.jpg" >
                 </div>
 
-                <div class="mySlides fade" id="id3" >
-                    <img height="260px" width="100%" src="./src imgs/city at night" style="width:100%">
+                <div class="mySlides fade" id="id3"  onmousedown="theme('red');">
+                    <img height="260px" width="100%" src="./src imgs/city at night" >
                 </div>
                 
-                <div class="mySlides fade" id="id4" >
-                    <img height="260px" width="100%" src="./src imgs/see.jpg" style="width:100%">
+                <div class="mySlides fade" id="id4"  onmousedown="theme('blue');">
+                    <img height="260px" width="100%" src="./src imgs/see.jpg" >
                 </div>
 
-                <div class="mySlides fade" id="id5" style="border-radius: 0 30px 0 0;" >
-                    <img height="260px" width="100%" src="./src imgs/ice.jpg" style="width:100%">
+                <div class="mySlides fade" id="id5"  onmousedown="theme('default');">
+                    <img height="260px" width="100%" src="./src imgs/ice.jpg" >
                 </div>
             </div>
             <H1 id="h">Explore le monde</H1>
@@ -115,28 +116,40 @@ OpenSession();?>
                         <label for="Hôtels">Hôtels </label> <input type="text" id="Hôtels" name="Hôtels" size="20">
                         <button type="button" id="add" onclick="addHôtels()" name="add">Ajouter</button>
                         <select id="selectHôtels" name="hotles[]" size="5" multiple>  
+                            <option value="Hôtel1"> Hôtel1 </option>  
+                            <option value="Hôtel2"> Hôtel2 </option>  
+                            <option value="Hôtel3"> Hôtel3 </option>   
                         </select> 
                     </div>
                     <div class="contain">
                         <label for="Restaurants">Restaurants </label>  <input type="text" id="Restaurants" name="Restaurants" size="20">
                         <button type="button" id="add" onclick="addRestaurants()" name="add">Ajouter</button>
                         <select id="selectRestaurants" name="Restaurantss[]" size="5" multiple>  
+                            <option value="Restaurant1"> Restaurant1 </option>  
+                            <option value="Restaurant2"> Restaurant2 </option>  
+                            <option value="Restaurant3"> Restaurant3 </option>   
                         </select> 
                     </div>
                     <div class="contain">
                         <label for="Gares">Gares </label>  <input type="text" id="Gares" name="Gares" size="20">
                         <button type="button" id="add" onclick="addGares()" name="add">Ajouter</button>
-                        <select id="selectGares" name="Garess[]" size="5" multiple>
+                        <select id="selectGares" name="Garess[]" size="5" multiple>  
+                            <option value="Gare1"> Gare1 </option>  
+                            <option value="Gare2"> Gare2 </option>  
+                            <option value="Gare3"> Gare3 </option>   
                         </select> 
                     </div>
                     <div class="contain">
                             <label for="Aéroports">Aéroports </label>  <input type="text" id="Aéroports" name="Aéroports" size="20">
                             <button type="button" id="add" onclick="addAéroport()" name="add">Ajouter</button>
                             <select id="selectAéroports" name="Aeroports[]" size="5" multiple>  
+                                <option value="Aéroport1"> Aéroport1 </option>  
+                                <option value="Aéroport2"> Aéroport2 </option>  
+                                <option value="Aéroport3"> Aéroport3 </option>   
                             </select> 
                     </div>
-                </div> <button id="add" type="submit" onclick="" name="add">Submit</button>
-                
+                </div>
+                <button id="add" type="submit" name="add">Submit</button>
              </form>  
             
         </section>
@@ -157,19 +170,12 @@ OpenSession();?>
                         </div>
                     
                     <button onclick="closeDialogADD('DialogAddPays');">ADD</button>
-                    <button onclick="closeDialog('DialogAddPays');">Cancel</button>
-                            <script>
-                                function closeDialogADD(namedig){
-                                    var dialog = document.getElementById(namedig);
-                                    alert('Ajouté avec succes');
-                                    dialog.close();
-                                }
-                            </script>
-            
+                    <button onclick="closeDialog('DialogAddPays');">Cancel</button>            
                 </form>
         </dialog> 
                          
     
-    <script src="./Script.js"></script>  
+    <script src="./a_Global_JS.js"></script>
+    <script src="./a_index_JS.js"></script>  
 </body>
 </html>
