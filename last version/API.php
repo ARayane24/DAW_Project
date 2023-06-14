@@ -366,7 +366,7 @@ function courantVilleInfo($i){
         return $a;
     }   
 }
-
+/*
 function courantVillePhoto($i){
     $connect = connecter();
     $a="";
@@ -391,7 +391,7 @@ function courantVilleNec($i){
         return $a;
     }   
 }
-
+*/
 function getData($var){
     if (modification()) {
         return courantVilleInfo($var);
