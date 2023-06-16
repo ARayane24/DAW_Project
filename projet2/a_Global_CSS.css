@@ -98,7 +98,7 @@ li {
 /* button */
 button {
   padding: 7px 4.6%;
-  padding-bottom: 0px;
+  margin-bottom: 0px;
   border-color: var(--Background);
   border-radius: 10px;
   background-color: var(--ButtonsBackgound);

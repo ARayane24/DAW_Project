@@ -36,9 +36,13 @@
          dots[i].className = dots[i].className.replace(" active", ""); // cache tous les point
      }
 
-     slides[slideIndex-1].style.display = "block"; // affiche une img 
-     dots[slideIndex-1].className += " active"; // active une point
-     hs[slideIndex-1].style.display = "block"; // affiche une titre site
+     if (slides[slideIndex-1] && dots[slideIndex-1] && hs[slideIndex-1]) {
+        slides[slideIndex-1].style.display = "block"; // affiche une img 
+        dots[slideIndex-1].className += " active"; // active une point
+        hs[slideIndex-1].style.display = "block"; // affiche une titre site
+     }
+
+     
 
      if (start) { // start va etre vrais si user click sur un img 
          slideIndex++; // positionne l'index sur l'img suiv.
@@ -158,6 +162,21 @@
 
 
   /////
-  function deletenec(){
-    alert("le necc que vous avez selectionnee a ete supprimee");
+  function deleteNec(x){
+    // pour exe. code PHP depuis JS
+
+    // Créer un objet XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Définir la méthode et l'URL de la requête
+    xhr.open("POST", "API.php", true);
+
+    // Définir l'en-tête de la requête
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Envoyer la requête avec la valeur en tant que paramètre
+    xhr.send("x=" + encodeURIComponent(x));
+    alert("le necc que vous avez selectionnee a ete supprimee" + x);
+    location.reload();
+
 }

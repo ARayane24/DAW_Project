@@ -350,8 +350,6 @@ function updateNaiss($idvil , $idsnec, $type)
                 }
                 
             }
-            
-            
         } 
     }
 }
@@ -361,7 +359,7 @@ function updateNaiss($idvil , $idsnec, $type)
 
 ///
 function OpenSession(){
-    
+
     $connect = connecter();
     if (!($connect)) {
         die('Connection Failed');

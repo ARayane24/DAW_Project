@@ -146,7 +146,8 @@ function showAll() {
 
 }
 
-img1.addEventListener("mouseover", function() {
+if(img1) 
+  img1.addEventListener("mouseover", function() {
   // detect hover sur img1
   img1Hover = !img1Hover;
   
@@ -161,6 +162,7 @@ img1.addEventListener("mouseover", function() {
   
 });
 
+if(img2) 
 img2.addEventListener("mouseover", function() {
   // detect hover sur img2
   img2Hover = !img2Hover;
@@ -174,6 +176,7 @@ img2.addEventListener("mouseover", function() {
     img2.style.margin = '0px';            
 });
 
+if(img3)
 img3.addEventListener("mouseover", function() {
   // detect hover sur img3
   img3Hover = !img3Hover;
@@ -187,6 +190,7 @@ img3.addEventListener("mouseover", function() {
     img3.style.margin = '0px';
 });
 
+if(h)
 h.addEventListener("mouseover", function() {
   // detect hover sur titre de page
 
@@ -202,6 +206,7 @@ h.addEventListener("mouseover", function() {
 
 });
 
+if(img4)
 img4.addEventListener("mouseover", function() {
   // detect hover sur img4
   img4Hover = !img4Hover;
@@ -215,6 +220,7 @@ img4.addEventListener("mouseover", function() {
     img4.style.margin = '0px';
 });
 
+if(img5)
 img5.addEventListener("mouseover", function() {
   // detect hover sur img5
   img5Hover = !img5Hover;
@@ -228,7 +234,7 @@ img5.addEventListener("mouseover", function() {
     img5.style.margin = '0px';
 });
 
-
+if(img1)
 img1.addEventListener("mouseout", function() {
   // detect un-hover sur img1
     img1Hover = false;
@@ -238,6 +244,7 @@ img1.addEventListener("mouseout", function() {
   
 });
 
+if(img2)
 img2.addEventListener("mouseout", function() {
   // detect un-hover sur img2
   img2Hover = false;
@@ -246,6 +253,7 @@ img2.addEventListener("mouseout", function() {
     showAll();
 });
 
+if(img3)
 img3.addEventListener("mouseout", function() {
   // detect un-hover sur img3
     img3Hover = false;
@@ -257,6 +265,7 @@ img3.addEventListener("mouseout", function() {
     
 });
 
+if(h)
 h.addEventListener("mouseout", function() {
   // detect un-hover sur le titre de la page
 
@@ -268,6 +277,7 @@ h.addEventListener("mouseout", function() {
     
 });
 
+if(img4)
 img4.addEventListener("mouseout", function() {
   // detect un-hover sur img4
     img4Hover = false;
@@ -276,6 +286,7 @@ img4.addEventListener("mouseout", function() {
     showAll();
 });
 
+if(img5)
 img5.addEventListener("mouseout", function() {
   // detect un-hover sur img5
     img5Hover = false;

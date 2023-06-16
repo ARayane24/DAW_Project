@@ -113,13 +113,13 @@ OpenSession();
 
                 <div class="details">
                     <div id="contain-label">
-                        <label for="Photos">Photo </label> 
                         <label for="Site">Site </label>
+                        <label for="Photos">Photo </label> 
                     </div>
 
                     <div class="contain">
-                        <input type="text" id="Photo" name="Photo" placeholder="photo1.png" required>
                         <input type="text" id="Site" name="Site" maxlength="10" placeholder="Casbas" required> 
+                        <input type="text" id="Photo" name="Photo" placeholder="photo1.png" required>
                     </div>
 
                     <button type="button" id="add" onclick="addSite('Site' , 'Photo');" name="add">Ajouter Sites</button>
