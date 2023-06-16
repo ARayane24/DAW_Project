@@ -12,7 +12,7 @@ session_start();
 function connecter()
 {
     // connect a la base de donne
-    return new mysqli('localhost', 'root', '', 'voyage',3308);
+    return new mysqli('localhost', 'root', '', 'voyage');
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -565,7 +565,7 @@ function recherchPhotos(){
                     echo "
                     <div class=\"mySlides fade\"  onmousedown = \"startPause()\">
                         <img  height=\"350px\" width=\"100%\" src=\"".$row['cheminphoto']."\" >
-                        <H1 class='h' style='top: 60%; font-size: 25px;' id=\"h\">".$row['nomsit']."</H1>
+                        <H1 style='top: 60%; font-size: 25px;' class='h' id=\"h\">".$row['nomsit']."</H1>
                     </div>
                     
                     "; 
