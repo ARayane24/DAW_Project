@@ -35,10 +35,10 @@ function addDetails(idNec){
 
     let selectListe;
     switch(idNec){
-        case 'Aéroports' :selectListe = 'selectAéroports'; break;
-        case 'Gares' :selectListe = 'selectGares'; break;
-        case 'Restaurants' :selectListe = 'selectRestaurants'; break;
-        case 'hotel' :selectListe = 'selectHôtels'; break;
+        case 'Aeroport' :selectListe = 'selectAeroports'; break;
+        case 'Gare' :selectListe = 'selectGares'; break;
+        case 'Restaurant' :selectListe = 'selectRestaurants'; break;
+        case 'Hotel' :selectListe = 'selectHôtels'; break;
     }
 
       let liste = document.getElementById(selectListe);

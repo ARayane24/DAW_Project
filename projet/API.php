@@ -12,7 +12,7 @@ session_start();
 function connecter()
 {
     // connect a la base de donne
-    return new mysqli('localhost', 'root', '', 'voyage',3308);
+    return new mysqli('localhost', 'root', '', 'voyage');
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -208,37 +208,52 @@ function updateAll($idvil)
 
         $sql1 = $connexion->query($sql1)->fetch_assoc();
 
-        if (isset($_POST['Continent']))
-            updateContinant($sql1['idcon']); // update continant
-
-        if (isset($_POST['Pays']))
-            updatepays($sql1['idpay']);      // update pays
-        
-        if (isset($_POST['Ville2']))
-            updateVille($idvil);    // update ville
-        
-        if (isset($_POST['Site']))
-            updateSite($sql1['idsit']);     // update site
- 
-
-        
-
-        $necTypes = ['hotle', 'gare', 'aeroport', 'restaurant'];
-        for ($j = 0; $j < 4; $j++){
-
-            $sql = "SELECT necessaire.nomnec 
-                     FROM (ville join necessaire on ville.idvil=necessaire.idvil)
-                         where ville.idvil=$idvil and necessaire.typenec = '$necTypes[$j]'; "; //avoir tablue de nec de meme type de cette ville
+        if ($sql1) {
             
-            $sql = $connexion->query($sql)->fetch_assoc();
-            print_r($sql);
-            if (isset($_POST[ $necTypes[$j]."s" ]))
-                updateNaiss($idvil ,$sql , $necTypes[$j]);  // update nec de chaque type
-        }
+            if (isset($_POST['Continent']))
+                updateContinant($sql1['idcon']); // update continant
+
+            if (isset($_POST['Pays']))
+                updatepays($sql1['idpay']);      // update pays
             
+            if (isset($_POST['Ville2']))
+                updateVille($idvil);    // update ville
+            
+            if (isset($_POST['Site']))
+                updateSite($sql1['idsit']);     // update site
+    
+
+            
+
+            $arrayTypeNec = array('Aeroport', 'Restaurant', 'Hotel', 'Gare');
+            foreach ($arrayTypeNec as $type){
+                echo "<br>";
+                $sql = "SELECT necessaire.idnec 
+                        FROM (ville join necessaire on ville.idvil=necessaire.idvil)
+                            where ville.idvil=$idvil and necessaire.typenec = '$type'; "; //avoir tablue de nec de meme type de cette ville
+                
+                $sql = $connexion->query($sql);
+
+                $result = array(); // make a new array to hold all your data
+
+
+                $index = 0;                 
+                while($row = $sql->fetch_assoc()) {
+                    $result[$index] = $row;
+                    $index++;                  
+                }
+                
+            
+                if (isset($_POST[ $type."s" ])){
+                    
+                   updateNaiss($idvil ,$result, $type);  // update nec de chaque type
+                }
+                    
+            }
+        }     
     }
-
 }
+
 function updateContinant($idcon)
 {
     $connect = connecter();
@@ -296,26 +311,47 @@ function updateNaiss($idvil , $idsnec, $type)
     if (!($connect)) {
         die('Connection Failed');
     } else {
-        $necName = $_POST[$type."s"];
-        $a = array();
-        $a = $idsnec;
-        $idvil = array_values($a); // convert associative tab a une tab 
-        print_r($a);
+        $newNecName = $_POST[$type."s"];
+        
         $i = 0;
 
-        if ($necName != '') {
-           
-            foreach($necName as $nec){
-                /* pour chaque element de nec de meme type va avoir un new valuer */
-                if ($i >= sizeof($idsnec) ) {
-                    insertNaiss($idvil,$nec,$type); // si le nombre de new element est grand que le nbr des element presedant
-                }else{
-                    $query = "UPDATE necessaire SET nomnec = '$nec' WHERE idnec = $idsnec[$i] AND typenec = '$type';";
+        if ($newNecName) {
+            echo"here we go  <br>";
+            if (is_array($idsnec)) {
+                // lot of values in the previous version
+                $idsnec = array_values($idsnec);
+                for($i = 0 ; $i<sizeof($newNecName); $i++){
+                    /* pour chaque element de nec de meme type va avoir un new valuer */
+                    if ($i >= sizeof($idsnec) ) {
+                        echo"<h2> $idvil , $newNecName[$i] , $type </h2>";
+                        insertNaiss($idvil,$newNecName[$i],$type); // si le nombre de new element est grand que le nbr des element presedant
+                    }else{
+                        echo"<h1> $newNecName[$i] ,". $idsnec[$i]['idnec'] ." , $type </h1>";
+                        $id = $idsnec[$i]['idnec'];
+                        $query = "UPDATE necessaire SET nomnec = '$newNecName[$i]' WHERE idnec = $id ;";
+                        $result = mysqli_query($connect, $query);
+                        print_r($result);
+                        
+                    }
+                    
+                }
+            }else{
+                // one value in the previous version
+                if ( ! is_array($newNecName) && $idsnec) {
+                    $query = "UPDATE necessaire SET nomnec = '$newNecName' WHERE idnec = $idsnec[0]['idnec'];";
                     $result = mysqli_query($connect, $query);
                     print_r($result);
-                    $i++;
+                }else {
+                    for($i = 0 ; $i<sizeof($newNecName); $i++){
+                       
+                        insertNaiss($idvil,$newNecName[$i],$type); // si le nombre de new element est grand que le nbr des element presedant
+                        
+                    }
                 }
+                
             }
+            
+            
         } 
     }
 }
@@ -324,8 +360,8 @@ function updateNaiss($idvil , $idsnec, $type)
 
 
 ///
-function OpenSession()
-{
+function OpenSession(){
+    
     $connect = connecter();
     if (!($connect)) {
         die('Connection Failed');
@@ -369,6 +405,7 @@ function recherchSites()
     return $a;
     
 }
+
 function recherchNaiss()
 {
     $connect = connecter();

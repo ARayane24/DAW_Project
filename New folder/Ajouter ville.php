@@ -121,24 +121,24 @@ OpenSession();
                 
                 <div id="tourist-areas">
                     <div class="contain">
-                        <label for="hotel">Hôtels </label> <input type="text" id="hotel" name="hotel" maxlength="20">
-                        <button type="button" id="add" onclick="addDetails('hotel');" name="add">Ajouter</button>
-                        <select id="selectHôtels" name="hotles[]" size="5" multiple></select> 
+                        <label for="Hotel">Hôtels </label> <input type="text" id="Hotel" name="Hotel" maxlength="20">
+                        <button type="button" id="add" onclick="addDetails('Hotel');" name="add">Ajouter</button>
+                        <select id="selectHôtels" name="Hotels[]" size="5" multiple></select> 
                     </div>
                     <div class="contain">
-                        <label for="Restaurants">Restaurants </label>  <input type="text" id="Restaurants" name="Restaurants" maxlength="20">
-                        <button type="button" id="add" onclick="addDetails('Restaurants');" name="add">Ajouter</button>
-                        <select id="selectRestaurants" name="Restaurantss[]" size="5" multiple></select> 
+                        <label for="Restaurant">Restaurants </label>  <input type="text" id="Restaurant" name="Restaurant" maxlength="20">
+                        <button type="button" id="add" onclick="addDetails('Restaurant');" name="add">Ajouter</button>
+                        <select id="selectRestaurants" name="Restaurants[]" size="5" multiple></select> 
                     </div>
                     <div class="contain">
-                        <label for="Gares">Gares </label>  <input type="text" id="Gares" name="Gares" maxlength="20">
-                        <button type="button" id="add" onclick="addDetails('Gares');" name="add">Ajouter</button>
-                        <select id="selectGares" name="Garess[]" size="5" multiple></select> 
+                        <label for="Gare">Gares </label>  <input type="text" id="Gare" name="Gare" maxlength="20">
+                        <button type="button" id="add" onclick="addDetails('Gare');" name="add">Ajouter</button>
+                        <select id="selectGares" name="Gares[]" size="5" multiple></select> 
                     </div>
                     <div class="contain">
-                            <label for="Aéroports">Aéroports </label>  <input type="text" id="Aéroports" name="Aéroports" maxlength="20">
-                            <button type="button" id="add" onclick="addDetails('Aéroports');" name="add">Ajouter</button>
-                            <select id="selectAéroports" name="Aeroports[]" size="5" multiple></select> 
+                            <label for="Aeroport">Aeroports </label>  <input type="text" id="Aeroport" name="Aeroport" maxlength="20">
+                            <button type="button" id="add" onclick="addDetails('Aeroport');" name="add">Ajouter</button>
+                            <select id="selectAeroports" name="Aeroports[]" size="5" multiple></select> 
                     </div>
                 </div>
                 <input type="hidden" name="mode" value="<?php if(modification()) echo "modification"; ?>">
