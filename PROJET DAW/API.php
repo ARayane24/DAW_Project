@@ -138,8 +138,8 @@ function insertVille()
             }
 
             /* insert les 4 necessaire */
-            if (isset($_POST['hotles'])) {
-                $hotel = $_POST['hotles'];
+            if (isset($_POST['Hotels'])) {
+                $hotel = $_POST['Hotels'];
                 if ($hotel != '') {
                     foreach ($hotel as $i) {
                         insertNaiss($idvil, $i, 'Hotel');
@@ -147,8 +147,8 @@ function insertVille()
                 }
             }
 
-            if (isset($_POST['Restaurantss'])) {
-                $restaurant = $_POST['Restaurantss'];
+            if (isset($_POST['Restaurants'])) {
+                $restaurant = $_POST['Restaurants'];
                 if ($restaurant != '') {
                     foreach ($restaurant as $i) {
                         insertNaiss($idvil, $i, 'Restaurant');
@@ -156,8 +156,8 @@ function insertVille()
                 }
             }
 
-            if (isset($_POST['Garess'])) {
-                $gares = $_POST['Garess'];
+            if (isset($_POST['Gares'])) {
+                $gares = $_POST['Gares'];
                 if ($gares != '') {
                     foreach ($gares as $i) {
                         insertNaiss($idvil, $i, 'Gare');
@@ -200,7 +200,7 @@ function insertSite($idvil)
         if ($photo != "" and $site != "") {
             $ary = array_combine($photo, $site);
             foreach($ary as $sitee => $photoo){
-                 $query = "INSERT into sites(nomsit,cheminphoto,idvil) values ('$sitee','$photoo','$idvil');";
+                 $query = "INSERT into sites(nomsit,cheminphoto,idvil) values ('$photoo','$sitee','$idvil');";
                  $result = mysqli_query($connect, $query);
 
             }
@@ -236,7 +236,7 @@ function updateAll($idvil)
                 updateVille($idvil);    // update ville
             
             if (isset($_POST['Site']))
-                updateSite($sql1['idsit']);     // update site
+     // FIX          //updateSite($sql1['idsit']);     // update site
     
 
             
@@ -313,8 +313,14 @@ function updateSite($idsite)
         die('Connection Failed');
     } else {
         $site = $_POST['Site'];
-        $query = "UPDATE sites SET nomsit = '$site' WHERE idsit = $idsite ;";
-        $result = mysqli_query($connect, $query);
+
+        if ($idsite) {
+            $query = "UPDATE sites SET nomsit = '$site' , nomsit = '$site'  WHERE idsit = $idsite ;";
+            $result = mysqli_query($connect, $query);
+
+        
+        }
+        
 
     }
 }
@@ -330,7 +336,6 @@ function updateNaiss($idvil , $idsnec, $type)
         $i = 0;
 
         if ($newNecName) {
-            echo"here we go  <br>";
             if (is_array($idsnec)) {
                 // lot of values in the previous version
                 $idsnec = array_values($idsnec);
@@ -344,8 +349,6 @@ function updateNaiss($idvil , $idsnec, $type)
                         $id = $idsnec[$i]['idnec'];
                         $query = "UPDATE necessaire SET nomnec = '$newNecName[$i]' WHERE idnec = $id ;";
                         $result = mysqli_query($connect, $query);
-                        print_r($result);
-                        
                     }
                     
                 }
@@ -354,7 +357,6 @@ function updateNaiss($idvil , $idsnec, $type)
                 if ( ! is_array($newNecName) && $idsnec) {
                     $query = "UPDATE necessaire SET nomnec = '$newNecName' WHERE idnec = $idsnec[0]['idnec'];";
                     $result = mysqli_query($connect, $query);
-                    print_r($result);
                 }else {
                     for($i = 0 ; $i<sizeof($newNecName); $i++){
                        
@@ -402,21 +404,7 @@ function listeselect($table, $code)
 
 
 /*  les fonctions de recherche */
-function recherchSites()
-{ $a="";
-    $connect = connecter();
-    if ($connect) {
-        $naiss = $_SESSION['Session'];
-        $idvil = $naiss['Idvil'];
-            foreach ($arrayTypeNec as $type) {
-                $query = "SELECT cheminphoto FROM sites where Idvil = $idvil;";
-                $result = $connect->query($query);
-                $a = $result->fetch_all(MYSQLI_ASSOC);
-            }
-    }
-    return $a;
-    
-}
+
 function recherchNaiss()
 {
     $connect = connecter();
@@ -659,15 +647,18 @@ function courantVilleInfo($i)
     }
 }
 
-function courantVillePhoto($i)
+function courantVillePhoto($idVille , $type )
 {
     $connect = connecter();
     $a = "";
     if ($connect) {
-        $sql = "SELECT continent.nomcon , pays.nompay , ville.idvil , ville.nomvil , ville.descvil  FROM (( continent join pays on continent.idcon = pays.idcon) join ville on pays.idpay = ville.idpay )where ville.idvil=$i;";
+        $sql ="SELECT sites.nomsit , sites.cheminphoto  
+                 FROM ( ville join sites on ville.idvil=sites.idvil )
+                     where ville.idvil=$idVille ;";
+
         $sql = $connect->query($sql);
         $a = $sql->fetch_all(MYSQLI_ASSOC);
-
+       
         return $a;
     }
 }
@@ -695,10 +686,15 @@ function getDataNec($type){
 
         $a = courantVilleNec($_GET['idville'] , $type);
 
-        
-        foreach($a as $ligne){
-            echo"<option value=".$ligne['nomnec'].">".$ligne['nomnec']."</option> <br>";
+        if (is_array($a)) {
+            foreach($a as $ligne){
+                echo"<option value=".$ligne['nomsit'].">".$ligne['nomnec']."</option> <br>";
+            }
+        }else{
+            echo"<option value=".$a['nomnec'].">".$a['nomnec']."</option> <br>";
         }
+        
+        
     } else {
         echo "";
     }
@@ -717,7 +713,29 @@ function getData($var)
     }
 }
 
+function getPhoto($type){
+    if (modification()) {
+        
+        $a = courantVillePhoto($_GET['idville'] , $type);
+        
+        if ($type == 'Photo') {
+            $type = 'cheminphoto';
+        }else{
+            $type = 'nomsit';
+        }
+         
 
+        if (is_array($a)) {
+            foreach($a as $ligne){
+                echo"<option value=".$ligne[$type].">".$ligne[$type]."</option> <br>";
+            }
+        }else{
+            echo"<option value=".$a[$type].">".$a[$type]."</option> <br>";
+        }
+    } else {
+        echo "";
+    }
+}
 
 
 

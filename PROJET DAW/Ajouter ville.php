@@ -122,11 +122,11 @@ OpenSession();
                         <input type="text" id="Photo" name="Photo" placeholder="photo1.png" required>
                     </div>
 
-                    <button type="button" id="add" onclick="addSite('Site' , 'Photo');" name="add">Ajouter Sites</button>
+                    <button type="button" id="add" onclick="addSite('Site' , 'Photo' , <?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add"><?php if(modification()) echo "Modifier Sites";  else echo "Ajouter Sites";?></button>
 
                     <div class="contain">
-                        <select id="selectSites" name="Sites[]" size="5" multiple></select>    
-                        <select id="selectPhotos" name="Photos[]" size="5" multiple></select> 
+                        <select id="selectSites" name="Sites[]" size="5" multiple><?php getPhoto('Site'); ?></select>    
+                        <select id="selectPhotos" name="Photos[]" size="5" multiple><?php getPhoto('Photo'); ?></select> 
                     </div>
                 </div>
 
@@ -137,28 +137,28 @@ OpenSession();
                 <div id="tourist-areas">
                     <div class="contain">
                         <label for="Hotel">Hôtels </label> <input type="text" id="Hotel" name="Hotel" maxlength="20">
-                        <button type="button" id="add" onclick="addDetails('Hotel' , <?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add">Ajouter</button>
+                        <button type="button" id="add" onclick="addDetails('Hotel' , <?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add"><?php if(modification()) echo "Modifier";  else echo "Ajouter";?></button>
                         <select id="selectHôtels" name="Hotels[]" size="5" multiple><?php getDataNec('Hotel'); ?> </select> 
                     </div>
                     <div class="contain">
                         <label for="Restaurant">Restaurants </label>  <input type="text" id="Restaurant" name="Restaurant" maxlength="20">
-                        <button type="button" id="add" onclick="addDetails('Restaurant',<?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add">Ajouter</button>
+                        <button type="button" id="add" onclick="addDetails('Restaurant',<?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add"><?php if(modification()) echo "Modifier";  else echo "Ajouter";?></button>
                         <select id="selectRestaurants" name="Restaurants[]" size="5" multiple><?php getDataNec('Restaurant'); ?></select> 
                     </div>
                     <div class="contain">
                         <label for="Gare">Gares </label>  <input type="text" id="Gare" name="Gare" maxlength="20">
-                        <button type="button" id="add" onclick="addDetails('Gare',<?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add">Ajouter</button>
+                        <button type="button" id="add" onclick="addDetails('Gare',<?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add"><?php if(modification()) echo "Modifier";  else echo "Ajouter";?></button>
                         <select id="selectGares" name="Gares[]" size="5" multiple><?php getDataNec('Gare'); ?></select> 
                     </div>
                     <div class="contain">
                             <label for="Aeroport">Aeroports </label>  <input type="text" id="Aeroport" name="Aeroport" maxlength="20">
-                            <button type="button" id="add" onclick="addDetails('Aeroport',<?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add">Ajouter</button>
+                            <button type="button" id="add" onclick="addDetails('Aeroport',<?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add"><?php if(modification()) echo "Modifier";  else echo "Ajouter";?></button>
                             <select id="selectAeroports" name="Aeroports[]" size="5" multiple><?php getDataNec('Aeroport'); ?></select> 
                     </div>
                 </div>
                 <input type="hidden" name="mode" value="<?php if(modification()) echo "modification"; ?>">
                 <input type="hidden" name="idville_toEdit" value="<?php if(modification()) echo "".$_GET['idville']; ?>">
-                <button id="add" type="submit" name="add"><?php if(modification()) echo "modifier";  else echo "ajouter";?></button>
+                <button id="add" type="submit" name="add"><?php if(modification()) echo "Modifier";  else echo "Ajouter";?></button>
              </form>  
             
         </section>

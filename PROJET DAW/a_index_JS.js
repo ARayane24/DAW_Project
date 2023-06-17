@@ -30,10 +30,15 @@ function closeDialog(namedig) {
 let  hasBeenIni = false; // pour conne si les variable a ete insialise ou non
 
 if ( ! hasBeenIni ) {
+    if(document.getElementById('selectAeroports'))
     var nbrElementAeroportPre  = document.getElementById('selectAeroports').children.length;
+    if(document.getElementById('selectGares'))
     var nbrElementGarePre  = document.getElementById('selectGares').children.length;
+    if(document.getElementById('selectRestaurants'))
     var nbrElementRestaurantPre  = document.getElementById('selectRestaurants').children.length;
+    if(document.getElementById('selectHôtels'))
     var nbrElementHotelPre  = document.getElementById('selectHôtels').children.length;
+    if(document.getElementById('selectSites'))
     var nbrElementSitePre = document.getElementById('selectSites').children.length; 
 
 
@@ -55,8 +60,7 @@ if ( ! hasBeenIni ) {
 function addDetails(idNec , bool){
     let newNec = document.getElementById(idNec).value;
     let text = document.createTextNode(newNec);
-    let option  = document.createElement('option');
-    option.appendChild(text);
+    
 
     let selectListe;
     let liste;
@@ -68,11 +72,14 @@ function addDetails(idNec , bool){
             liste = document.getElementById(selectListe);
 
             if (bool && nbrElementAeroportPre>=1 && nbrElementAeroportPre > elementAeroportPre_N) {
-                alert("la valeur suivant :" + liste.children[ elementAeroportPre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
+                alert("la valeur suivant : " + liste.children[ elementAeroportPre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
                 liste.children[ elementAeroportPre_N ].innerText =  newNec;
                 liste.children[ elementAeroportPre_N ].value =  newNec;
                 elementAeroportPre_N ++ ;
             }else{
+                let option  = document.createElement('option');
+                option.appendChild(text);
+                option.value = newNec;
                 liste.appendChild(option);
             }
             
@@ -83,11 +90,14 @@ function addDetails(idNec , bool){
             liste = document.getElementById(selectListe);
 
             if (bool && nbrElementGarePre>=1 && nbrElementGarePre > elementGarePre_N) {
-                alert("la valeur suivant :" + liste.children[ elementGarePre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
+                alert("la valeur suivant : " + liste.children[ elementGarePre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
                 liste.children[ elementGarePre_N ].innerText =  newNec;
                 liste.children[ elementGarePre_N ].value =  newNec;
                 elementGarePre_N ++ ;
             }else{
+                let option  = document.createElement('option');
+                option.appendChild(text);
+                option.value = newNec;
                 liste.appendChild(option);
             }
             
@@ -98,11 +108,14 @@ function addDetails(idNec , bool){
             liste = document.getElementById(selectListe);
 
             if (bool && nbrElementRestaurantPre>=1 && nbrElementRestaurantPre > elementRestaurantPre_N) {
-                alert("la valeur suivant :" + liste.children[ elementRestaurantPre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
+                alert("la valeur suivant : " + liste.children[ elementRestaurantPre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
                 liste.children[ elementRestaurantPre_N ].innerText =  newNec;
                 liste.children[ elementRestaurantPre_N ].value =  newNec;
                 elementRestaurantPre_N ++ ;
             }else{
+                let option  = document.createElement('option');
+                option.appendChild(text);
+                option.value = newNec;
                 liste.appendChild(option);
             }
 
@@ -113,44 +126,48 @@ function addDetails(idNec , bool){
             liste = document.getElementById(selectListe);
 
             if (bool && nbrElementHotelPre>=1 && nbrElementHotelPre > elementHotelPre_N) {
-                alert("la valeur suivant :" + liste.children[ elementHotelPre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
+                alert("la valeur suivant : " + liste.children[ elementHotelPre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
                 liste.children[ elementHotelPre_N ].innerText =  newNec;
                 liste.children[ elementHotelPre_N ].value =  newNec;
                 elementHotelPre_N ++ ;
             }else{
+                let option  = document.createElement('option');
+                option.appendChild(text);
+                option.value = newNec;
                 liste.appendChild(option);
             }
 
             break;
         case 'Site' :
+            let newNec1 = document.getElementById('Photo').value;
+            let text1 = document.createTextNode(newNec1);
+
             selectListe = 'selectSites'; 
+            selectListe1 = 'selectPhotos'; 
             
             liste = document.getElementById(selectListe);
+            liste1 = document.getElementById(selectListe1);
 
             if (bool && nbrElementSitePre>=1 && nbrElementSitePre > elementSitePre_N) {
-                alert("la valeur suivant :" + liste.children[ elementSitePre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
+                alert("la valeur suivant : " + liste.children[ elementSitePre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
 
                 liste.children[ elementSitePre_N ].innerText =  newNec;
                 liste.children[ elementSitePre_N ].value =  newNec;
+
+
+                liste1.children[ elementSitePre_N ].innerText =  newNec1;
+                liste1.children[ elementSitePre_N ].value =  newNec1;
                 elementSitePre_N ++ ;
             }else{
+                let option  = document.createElement('option');
+                option.appendChild(text);
+                option.value = newNec;
                 liste.appendChild(option);
-            }
-            
-            break;
-        case 'Photo' :
-            selectListe = 'selectPhotos'; 
 
-            liste = document.getElementById(selectListe);
-
-            if (bool && nbrElementSitePre>=1 && nbrElementSitePre > elementSitePre_N) {
-                alert("la valeur suivant :" + liste.children[ elementSitePre_N ].innerText + " dans liste "+ idNec +" a ete remplace par : " + newNec);
-
-                liste.children[ elementSitePre_N ].innerText =  newNec;
-                liste.children[ elementSitePre_N ].value =  newNec;
-                elementSitePre_N ++ ;
-            }else{
-                liste.appendChild(option);
+                let option1  = document.createElement('option');
+                option1.appendChild(text1);
+                option1.value = newNec1;
+                liste1.appendChild(option1);
             }
             
             break;
@@ -159,10 +176,9 @@ function addDetails(idNec , bool){
       
 }
 
-function addSite(idNec1 , idNec2){
+function addSite(idNec1 , idNec2 , bool){
     if (document.getElementById(idNec1).value && document.getElementById(idNec2).value) {
-        addDetails(idNec1);
-        addDetails(idNec2);
+        addDetails(idNec1 , bool);
     }else{
         alert('chaque site doit avoir une photo !! ');
     }
