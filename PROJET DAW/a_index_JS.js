@@ -51,12 +51,6 @@ if ( ! hasBeenIni ) {
     hasBeenIni = true;
 }
 
-
-
-
- 
-
-
 function addDetails(idNec , bool){
     let newNec = document.getElementById(idNec).value;
     let text = document.createTextNode(newNec);
@@ -204,3 +198,25 @@ function deleteVille(x){
     location.reload();
 }
 
+/* verifier la form  */
+function checkForm(){
+    continent = document.getElementById('Continent').value;
+    pay = document.getElementById('Pays').value;
+
+    isContinentsExist = false;
+    isPaysExist = false;
+
+    if (isContinentsExist && isPaysExist){
+        alert("Les information de votre ville a ete ajoutees avec succes");
+        document.frmMr.submit();
+    }
+    else{
+        if ( !isContinentsExist && isPaysExist) {
+            alert("Le continent que vous avez selectionnes ne se trouvent pas dans notre base de donne, \n veuillez les ajouter ou choisir un autre !!");
+        }else if ( !isPaysExist && isContinentsExist) {
+            alert("Le pays que vous avez selectionnes ne se trouvent pas dans notre base de donne, \n veuillez les ajouter ou choisir un autre !!");
+        }else{
+            alert("Le continent et le pays que vous avez selectionnes ne se trouvent pas dans notre base de donne, \n veuillez les ajouter ou choisir un autre pays et continent !!");
+        }
+    }
+}

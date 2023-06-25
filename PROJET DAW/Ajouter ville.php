@@ -77,7 +77,7 @@ OpenSession();
                 <div id="main-info">
                     <div class="contain">
                         <label for="Continent">Continent</label> 
-                        <input type="text" id="Continent" name="Continent" maxlength="10" list="continent" pattern="[A-Za-zÀ-ÿ\s]+" value = '<?php  getData('nomcon'); ?>' required>
+                        <input type="text" id="Continent" name="Continent" maxlength="10" list="continent" pattern="[A-Za-zÀ-ÿ\s]+" title="ne peut pas avoir des numbre !!" value = '<?php  getData('nomcon'); ?>' required>
                         <datalist id='continent'>
                             <?php listeselect($_SESSION['continent'],'Nomcon');?>
                         </datalist>
@@ -87,7 +87,7 @@ OpenSession();
 
                     <div class="contain">
                             <label for="Pays">Pays</label>
-                            <input type="text" id="Pays" name="Pays" list="pays" maxlength="10" pattern="[A-Za-zÀ-ÿ\s]+" value = '<?php getData('nompay');?>' required>
+                            <input type="text" id="Pays" name="Pays" list="pays" maxlength="10" pattern="[A-Za-zÀ-ÿ\s]+" title="ne peut pas avoir des numbre !!" value = '<?php getData('nompay');?>' required>
                             <datalist id = "pays">
                                 <?php listeselect($_SESSION['pays'],'Nompay'); ?>
                             </datalist>
@@ -105,7 +105,7 @@ OpenSession();
                 <div class="details">
                     <div class="contain">
                         <label for="Descriptif">Descriptif</label> <br>
-                        <textarea id="Descriptif" name="Descriptif" placeholder="description" maxlength="255"  required><?php getData('descvil'); ?></textarea>        
+                        <textarea id="Descriptif" name="Descriptif" placeholder="description" maxlength="255" pattern="[^'\x22]+" title="Description ne peut pas contenir ( ' \ &ldquo; )" required><?php getData('descvil'); ?></textarea>        
                     </div>
                 </div>
 
@@ -118,15 +118,15 @@ OpenSession();
                     </div>
 
                     <div class="contain">
-                        <input type="text" id="Site" name="Site" maxlength="10" placeholder="Casbas" required> 
-                        <input type="text" id="Photo" name="Photo" placeholder="photo1.png" required>
+                        <input type="text" id="Site" name="Site" maxlength="10" placeholder="Casbah" > 
+                        <input type="text" id="Photo" name="Photo" placeholder="photo1.png" >
                     </div>
 
                     <button type="button" id="add" onclick="addSite('Site' , 'Photo' , <?php if(modification()) echo 'true'; else  echo 'false';?>);" name="add"><?php if(modification()) echo "Modifier Sites";  else echo "Ajouter Sites";?></button>
 
                     <div class="contain">
-                        <select id="selectSites" name="Sites[]" size="5" multiple><?php getPhoto('Site'); ?></select>    
-                        <select id="selectPhotos" name="Photos[]" size="5" multiple><?php getPhoto('Photo'); ?></select> 
+                        <select id="selectSites" name="Sites[]" size="5" multiple required><?php getPhoto('Site'); ?></select>    
+                        <select id="selectPhotos" name="Photos[]" size="5" multiple required><?php getPhoto('Photo'); ?></select> 
                     </div>
                 </div>
 
@@ -158,7 +158,7 @@ OpenSession();
                 </div>
                 <input type="hidden" name="mode" value="<?php if(modification()) echo "modification"; ?>">
                 <input type="hidden" name="idville_toEdit" value="<?php if(modification()) echo "".$_GET['idville']; ?>">
-                <button id="add" type="submit" name="add"><?php if(modification()) echo "Modifier";  else echo "Ajouter";?></button>
+                <button id="add" type="submit" name="add" onsubmit="checkForm()"><?php if(modification()) echo "Modifier";  else echo "Ajouter";?></button>
              </form>  
             
         </section>
@@ -168,14 +168,14 @@ OpenSession();
             <form method="POST" action="API.php">
                 <h2>Ajouter Pays</h2>
                     <div class="contain">
-                    <label for="ContinentPays">Continent  </label><input type="text" name="ContinentPays" maxlength="10" list="continent"  pattern="[A-Za-zÀ-ÿ\s]+">
+                    <label for="ContinentPays">Continent  </label><input type="text" name="ContinentPays" maxlength="10" list="continent"  pattern="[A-Za-zÀ-ÿ\s]+" title="ne peut pas avoir des numbre !!">
                         <datalist id='continent'>
                             <?php listeselect($_SESSION['continent'],'Nomcon');?>
                         </dataliste>
                     </div>
                     
                         <div class="contain">
-                            <label for="addPays">Pays  </label> <input type="text"  name="addPays" maxlength="10" pattern="[A-Za-zÀ-ÿ\s]+">
+                            <label for="addPays">Pays  </label> <input type="text"  name="addPays" maxlength="10" pattern="[A-Za-zÀ-ÿ\s]+" title="ne peut pas avoir des numbre !!">
                         </div>
                     
                     <button onclick="closeDialogADD('DialogAddPays');">ADD</button>
@@ -187,7 +187,7 @@ OpenSession();
             <form method="POST" action="API.php">
                 <h2>Ajouter Continent</h2>
                     <div class="contain">
-                        <label for="ContinentPays">Continent  </label><input type="text" name="addContinent" maxlength="10" list="continent"  pattern="[A-Za-zÀ-ÿ\s]+">
+                        <label for="ContinentPays">Continent  </label><input type="text" name="addContinent" maxlength="10" list="continent"  pattern="[A-Za-zÀ-ÿ\s]+" title="ne peut pas avoir des numbre !!">
                     </div>
                     
                     <button onclick="closeDialogADD('DialogAddContinent');">ADD</button>

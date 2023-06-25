@@ -101,7 +101,7 @@ function insertVille()
                     break;
                 }
             }
-            $pays = $i['Idpay'];
+           // $pays = $i['Idpay'];
 
             /* insert ville details */
             $query = "INSERT INTO ville( Nomvil, descvil, Idpay) VALUES ('$ville','$Descriptif','$pays');";
@@ -110,32 +110,11 @@ function insertVille()
             $idvil = mysqli_insert_id($connect);
 
             /* insert site */
-            if (isset($_POST['Site'])) {
-                //insertSite($idvil);
+            if (isset($_POST['Sites'])) {
+                insertSite($idvil ,$_POST['Photos'],$_POST['Sites']);
             }
 
-            /* insert photos : */
-            if (isset($_FILES['Photos'])) {
-                $file = $_FILES['Photos'];
-                     // Informations sur le fichier
-                    $fName = $_POST['Site'];
-                    $fileName = $file['name'];
-                    $fileTmpPath = $file['tmp_name'];
-                    $fileSize = $file['size'];
-                    $fileType = $file['type'];
-                
-                    // Chemin où enregistrer l'image sur le serveur
-                    $targetDirectory = "src imgs/";
-                    $targetFilePath = $targetDirectory . $fileName;
-                
-                    // Déplacer le fichier téléchargé vers le répertoire cible
-                    if (move_uploaded_file($fileTmpPath, $targetFilePath)) {
-                        // Insertion des données dans la base de données
-                        $insertQuery = "INSERT INTO sites (nomsit, cheminphoto,idvil) VALUES ('$fName', '$targetFilePath','$idvil')";
-                        mysqli_query($connect, $insertQuery);
-                    }    
-               
-            }
+            
 
             /* insert les 4 necessaire */
             if (isset($_POST['Hotels'])) {
@@ -173,8 +152,6 @@ function insertVille()
                     }
                 }
             }   
-            
-            insertSite($idvil);
         }
     }
     header("Location: index.php");
@@ -188,23 +165,30 @@ function insertNaiss($idvil, $name, $type)
     $result = mysqli_query($connect, $query);
 }
 
-function insertSite($idvil)
+function insertSite($idvil , $photo , $site)
 {
     $connect = connecter();
     if (!($connect)) {
         die('Connection Failed');
     } else {
-        $photo = $_POST['Photos'];
-        $site = $_POST['Sites'];
+        
 
         if ($photo != "" and $site != "") {
-            $ary = array_combine($photo, $site);
-            foreach($ary as $sitee => $photoo){
-                 $query = "INSERT into sites(nomsit,cheminphoto,idvil) values ('$photoo','$sitee','$idvil');";
-                 $result = mysqli_query($connect, $query);
 
+            if (is_array($photo) && is_array($site)) {
+                $photo = array_values($photo);
+                $site = array_values($site);
+
+            
+                for ($i=0; $i < sizeof($photo); $i++) { 
+                     $query = "INSERT into site(cheminphoto,nomsit,idvil) values ('$photo[$i]','$site[$i]',$idvil);";
+                     $result = mysqli_query($connect, $query);
+                     echo"<br> <h1>hhhhhhhhhhhhhhhhhh</h1> <br>";
+                }
+            }else{
+                $query = "INSERT into site(cheminphoto,nomsit,idvil) values ('$photo','$site',$idvil);";
+                $result = mysqli_query($connect, $query);
             }
-           
         }
     }
 }
@@ -218,25 +202,37 @@ function updateAll($idvil)
     if (!($connexion)) {
         echo 'vide';
     } else {
-        $sql1 = "SELECT continent.idcon , pays.idpay , sites.idsit
-                FROM ((( continent join pays on continent.idcon = pays.idcon) join ville on pays.idpay = ville.idpay ) join sites on ville.idvil = sites.idvil) 
+        $sql1 = "SELECT continent.idcon , pays.idpay , site.idsit
+                FROM ((( continent join pays on continent.idcon = pays.idcon) join ville on pays.idpay = ville.idpay ) join site on ville.idvil = site.idvil) 
                 WHERE ville.idvil=$idvil; ";
-
+        $sql = $connexion->query($sql1);
         $sql1 = $connexion->query($sql1)->fetch_assoc();
 
         if ($sql1) {
             
             if (isset($_POST['Continent']))
-                updateContinant($sql1['idcon']); // update continant
+                updateContinant($sql1['idcon']);echo"<h1>update donne!! </h1>" ;  // update site
+                // update continant
 
             if (isset($_POST['Pays']))
-                updatepays($sql1['idpay']);      // update pays
+                updatepays($sql1['idpay']);echo"<h1>update donne!! </h1>" ;  // update site
+                // update pays
             
             if (isset($_POST['Ville2']))
-                updateVille($idvil);    // update ville
+                updateVille($idvil);echo"<h1>update donne!! </h1>" ;  // update site
+                // update ville
             
-            if (isset($_POST['Site']))
-     // FIX          //updateSite($sql1['idsit']);     // update site
+            $result = array(); // make a new array to hold all your data
+
+
+            $index = 0;                 
+            while($row = $sql->fetch_assoc()) {
+                $result[$index] = $row['idsit'];
+                $index++;                  
+            }
+
+            if (isset($_POST['Site']))print_r($sql);
+                updateSite($result, $idvil);  echo"<h1>update donne!! </h1>" ;  // update site
     
 
             
@@ -306,22 +302,50 @@ function updateVille($idvil)
 
 }
 
-function updateSite($idsite)
+function updateSite($idsite, $idville)
 {
     $connect = connecter();
     if (!($connect)) {
         die('Connection Failed');
     } else {
-        $site = $_POST['Site'];
+        $site = $_POST['Sites'];
+        $photos = $_POST['Photos'];
 
-        if ($idsite) {
-            $query = "UPDATE sites SET nomsit = '$site' , nomsit = '$site'  WHERE idsit = $idsite ;";
-            $result = mysqli_query($connect, $query);
+        echo"<br> <h5>hhhhhhhhhhhhhhhhhh</h5> <br>";
+        print_r($photos);
+        echo"<br> <h5>hhhhhhhhhhhhhhhhhh</h5> <br>";
+        print_r($site);
+        echo"<br> <h5>hhhhhhhhhhhhhhhhhh</h5> <br>";
+                        print_r($idsite);
 
-        
+        if ($site  && $photos) {
+            if (is_array($idsite)) {
+                $idsite = array_values($idsite);
+                for ($i=0; $i < sizeof($site); $i++) { 
+                    /* pour chaque element de nec de meme type va avoir un new valuer */
+                    if ($i >= sizeof($idsite) ) {
+                        insertSite($idville, $photos[$i] ,$site[$i] ); // si le nombre de new element est grand que le nbr des element presedant
+                    }else{
+                        $query = "UPDATE site SET nomsit = '$site[$i]' , cheminphoto = '$photos[$i]'  WHERE idsit = $idsite[$i] ;";
+                        $result = mysqli_query($connect, $query);
+
+                        echo"<br> <h5>hhhhhhhhhhhhhhhhhh</h5> <br>";
+                        print_r($idsite[$i]);
+                    }
+                }
+            }else{
+
+                // one value in the previous version
+                if ( ! is_array($photos)) {
+                    $query = "UPDATE site SET nomsit = '$site' , cheminphoto = '$photos'  WHERE idsit = $idsite ;";
+                    $result = mysqli_query($connect, $query);
+                }else {
+                    for($i = 0 ; $i<sizeof($photos); $i++){
+                        insertSite($idville, $photos[$i] ,$site[$i] ); // si le nombre de new element est grand que le nbr des element presedant
+                    }
+                }
+            }
         }
-        
-
     }
 }
 
@@ -342,10 +366,8 @@ function updateNaiss($idvil , $idsnec, $type)
                 for($i = 0 ; $i<sizeof($newNecName); $i++){
                     /* pour chaque element de nec de meme type va avoir un new valuer */
                     if ($i >= sizeof($idsnec) ) {
-                        echo"<h2> $idvil , $newNecName[$i] , $type </h2>";
                         insertNaiss($idvil,$newNecName[$i],$type); // si le nombre de new element est grand que le nbr des element presedant
                     }else{
-                        echo"<h1> $newNecName[$i] ,". $idsnec[$i]['idnec'] ." , $type </h1>";
                         $id = $idsnec[$i]['idnec'];
                         $query = "UPDATE necessaire SET nomnec = '$newNecName[$i]' WHERE idnec = $id ;";
                         $result = mysqli_query($connect, $query);
@@ -491,6 +513,7 @@ function rechercher()
                             <script> preparePage(); </script> 
                             ";
                 $a = $sql->fetch_all(MYSQLI_ASSOC);
+
                 if ($a == null)
                     echo " <li style=' text-align: center;'><span class='ref' style=' width : 100%'> <h4> Aucun Resultat Trouver !</h4></span> </li>";
                 else {
@@ -538,7 +561,7 @@ function recherchPhotos(){
         if (isset($_GET['idville'])){
             $idVille = $_GET['idville'];
         
-            $sql = " SELECT ville.idvil ,sites.nomsit ,sites.cheminphoto FROM ville join sites on ville.idvil = sites.idvil where ville.idvil=". $idVille ."; "; //get all infos...
+            $sql = " SELECT ville.idvil ,site.nomsit ,site.cheminphoto FROM ville join site on ville.idvil = site.idvil where ville.idvil=". $idVille ."; "; //get all infos...
             $sql = $connexion->query($sql);
 
             if ($sql == null) {
@@ -637,8 +660,8 @@ function courantVilleInfo($i)
     $connect = connecter();
     $a = "";
     if ($connect) {
-        // $sql = " SELECT continent.nomcon , pays.nompay , ville.idvil , ville.nomvil , ville.descvil ,necessaire.nomnec , necessaire.typenec ,sites.nomsit ,sites.cheminphoto
-        //           FROM (((( continent join pays on continent.idcon = pays.idcon) join ville on pays.idpay = ville.idpay ) join necessaire on ville.idvil=necessaire.idvil ) join sites on ville.idvil = sites.idvil) where idvil=$i; "; //get all infos...
+        // $sql = " SELECT continent.nomcon , pays.nompay , ville.idvil , ville.nomvil , ville.descvil ,necessaire.nomnec , necessaire.typenec ,site.nomsit ,site.cheminphoto
+        //           FROM (((( continent join pays on continent.idcon = pays.idcon) join ville on pays.idpay = ville.idpay ) join necessaire on ville.idvil=necessaire.idvil ) join site on ville.idvil = site.idvil) where idvil=$i; "; //get all infos...
         $sql = "SELECT continent.nomcon , pays.nompay , ville.idvil , ville.nomvil , ville.descvil  FROM (( continent join pays on continent.idcon = pays.idcon) join ville on pays.idpay = ville.idpay )where ville.idvil=$i;";
         $sql = $connect->query($sql);
         $a = $sql->fetch_all(MYSQLI_ASSOC);
@@ -652,8 +675,8 @@ function courantVillePhoto($idVille , $type )
     $connect = connecter();
     $a = "";
     if ($connect) {
-        $sql ="SELECT sites.nomsit , sites.cheminphoto  
-                 FROM ( ville join sites on ville.idvil=sites.idvil )
+        $sql ="SELECT site.nomsit , site.cheminphoto  
+                 FROM ( ville join site on ville.idvil=site.idvil )
                      where ville.idvil=$idVille ;";
 
         $sql = $connect->query($sql);
@@ -687,8 +710,9 @@ function getDataNec($type){
         $a = courantVilleNec($_GET['idville'] , $type);
 
         if (is_array($a)) {
+            
             foreach($a as $ligne){
-                echo"<option value=".$ligne['nomsit'].">".$ligne['nomnec']."</option> <br>";
+                echo"<option value=".$ligne['nomnec'].">".$ligne['nomnec']."</option> <br>";
             }
         }else{
             echo"<option value=".$a['nomnec'].">".$a['nomnec']."</option> <br>";
@@ -704,10 +728,12 @@ function getData($var)
 {
     if (modification()) {
         $a = courantVilleInfo($_GET['idville']);
-        if (isset($a)) {
+        if ($a) {
             $GLOBALS['a'] = $a;
+            echo $GLOBALS['a'][0]["$var"];
         }
-        echo $GLOBALS['a'][0]["$var"];
+        
+        
     } else {
         echo "";
     }
